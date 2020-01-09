@@ -1,0 +1,39 @@
+	variable: a characteristic that varies from a person or a thing to another one, or 	over time.
+	experimental units (or unit): indiviudals or objects on which a variable is measured
+	measurement: a single measurement is the value of a variable measured on a an experimental unit.
+	population: The set of all measurements of a variable of interest to the investigator
+	sample: A subset of measurements selected and observed from the population of interest
+	
+	1) quantitative and continuous
+	2) qualitative and ranked
+	3) pure qualitative
+	4) quantitative and discrete
+	5) quantitative and continuous
+	6) qualitative and ranked
+	7) quantiative and disrete
+	8) pure qualitative
+	
+	1) 95%
+	2) 99.2%
+	3) 99.92 ???
+	4) 2.32
+	5) 1.25
+	6) 
+	
+	4) c
+	
+	5)
+	
+	6) 2.16
+	
+	standard normal curve
+	
+	sum i = 1 to n (x_i - x_bar)(y_i - y_bar)
+	sum i = 1 to n (x_i * y_i - x_i * y_bar - x_bar * y_i + x_bar * y_bar)
+	sum i = 1 to n (x_i * y_i - x_i * y_bar - x_bar * y_i) + n * x_bar * y_bar
+	sum i = 1 to n (x_i * y_i) - y_bar * sum(x_i) - x_bar * sum(y_i) + n * x_bar * y_bar
+	sum i = 1 to n (x_i * y_i) - y_bar * x_bar * n - x_bar * y_bar * n + n * x_bar * y_bar
+	sum i = 1 to n (x_i * y_i) - 2 * n * y_bar * x_bar + n * x_bar * y_bar
+	sum i = 1 to n (x_i * y_i) - n * y_bar * x_bar
+	
+	

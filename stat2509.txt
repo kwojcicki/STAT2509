@@ -1,0 +1,106 @@
+0.1 Basic concepts sec 1.1 of the textbook
+	variable: a characteristic that varies from a person or a thing to another one, or over time.
+		notation: x, y, z
+		example: height, # of m and m's in a bag
+	experimental units (or unit): indiviudals or objects on which a variable is measured
+		notation: i, j, k
+	measurement: a single measurement is the value of a variable measured on a an experimental unit.
+		notation: X_i (or y_i or z_i) denotes the measurement (or value) of variable X on unit i
+	population: The set of all measurements of a variable of interest to the investigator
+		note: we do not always observe all measurements in a population ie not all values in a population are known to us
+	sample: A subset of measurements selected and observed from the population of interest
+		note: Sample values are usually all observed and hene known to us
+		observed sample values are also called "data" (or measurements)
+		
+0.2 Types of variables
+	variables: 
+			qualitative (categorical)
+				pure qualitative (qualitative and non ordered) for example name
+				qualitative and ranked (qualatative and ordered) for example GPA 
+			quantitative
+				discrete
+				continuous
+	
+	key difference between qualitative and quantitative variables:
+		numerical operators (+, -, x, /, primarily + and -) are meaningful for quantitative variables but not for qualitative variables
+		examples: weight in pounds, quantitative (100lbs - 90lbs = 10lbs) meaningful
+		group label: 1,2,3,4 qualatative
+			1 + 3 does not mean group 4
+		student #: qualatative/category +/- can be performed but not meaningful
+	
+	discrete vs continious quantitative
+		discrete: possible values can be counted using integers (countable). In particular, a quantative numerical variable with fininity many possible values is disrete
+		example: # of oranges on an orange tree in a grove
+		continuous: Take infinitely many possible values which can fill an interval of decimal numbers
+		note: an interval (a, b) where a < b is the set of all decimal numbers between a and b
+		example: time until a light bulb burns out continious
+			
+	time spent on physicl exercises each week - continious quantitative
+	number of text messages sent every day - discrete
+	the level of pain from an injury 1,2,3...10 - ranked
+	daily average temperature - continious
+	number of textbooks bought in a term - discrete
+	answer to: weather you on a car or not - pure qualitative
+	types of makeups one owns - pure
+	number of makeup product one owns - discrete
+	monthly beer consumption by bottles - discrete
+	
+parameter: a numerical descripitive measure about popultion (usually unknown)
+statistic: a numerical descripitive meaure calculated from the sample (or data)
+note: you can obtain the value of a statistic using observed measurements in a sample, but you cannot obtain the value of a paramater using a sample
+examples: some parameters: mu, sigma^2, sigma^2
+		some statistics: sample mean x_bar sample variance, s_x^2, s_x
+		
+descriptive plots
+	important: histogram
+	other plotss: stem and leave plot, line char etc
+	
+bivariate data 
+	a pair of variables x and y (written as (x, y))
+	are observed simulteneously on n units i =1,2,...n resulting bivariate data: (x_i, y_i), i = 1,....,n
+	
+correlation coefficient (or simply correlation) between two variables
+	r := s_xy / (s_x * s_y)
+	
+	Where s_xy (s is small letter) := (1 / n - 1) * sum i: 1 to n ( x_i - x_bar)(y_i - y_bar) is called the (sample) covariance between x an y. And x_bar = 1/n * sum i: 1 to n (x_i)
+	(s_x)^2 = 1/n-1 * sum i: 1 to n (x_i - x_bar) ^ 2 = 1 / n - 1 * ( sum i: 1 to n(x_i^2) - 1/n * sum i: 1 to n(x_i)^2)
+	
+	s_x = sqrt(s_x^2). positive square root
+	
+	s_x^2 = sample variance
+	s_x sample standard deviation
+	
+	the correlation coefficient r measures the strength of linear relationship between x and y
+	
+	r > 0 means positive linear, r < 0 means negative
+	|r| closer to 1 means stronger cannot pass 1
+	
+
+continious distributions
+important ones: normal distribuion, t-distribuion
+normal distribution
+	- shape of density curve = bell-shaped and symmetric
+	- notation N( mu, sigma^2) = normal distribution with mean mu and variance sigma^2
+	  If X follows N( mu, sigma^2) then we write X ~ N(mu, sigma^2)
+	- If X ~ N(mu, sigma^2) then X + c ~ N(mu + c, sigma^2) for any constant c (ie a normal distribution with mean mu + c and variance of sigma^2)
+	 in particular if X ~ N(0, sigma^2) then X + c ~ N(c, sigma^2)
+	- If X ~ N(mu, sigm^2) then z := (X - mu) / sigma ~ N(0, 1) (standard normal distribuion)
+	- 3 sigma rules: check textbook
+	- how to use uppertail normal and t table
+	
+Hypothesis testing
+	what is a hypothesis test. what are null hypothesis (H_o) and alternative (H_a)
+	two tailed test and one tailed test
+	type I and type II errors
+	level of a test
+	example: null hypothesis innocent until proven guilty, alternative guilty, type I error put innocent person into jail, two II didn't put bad guy away
+	basic procedure to test a hypothesis
+		1. State H_o and H_a
+		2. Find the test statistic for the test
+		3. Find the rejection or critial region or p-value
+		4. Draw conclusion
+	For a hypothesis test about a population mean, when to use z-test and when to use t-test
+
+	
+	
+	
