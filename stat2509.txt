@@ -101,6 +101,15 @@ Hypothesis testing
 		4. Draw conclusion
 	For a hypothesis test about a population mean, when to use z-test and when to use t-test
 
+B_0: the mean value of y when X = 0
+	reason:  the mean of y when x = 0 is: E(B_0 + B_1 * 0) = 0
+
+B_1: The change in mean of y when x inncreases by one unit
+	reason: mean of y for a given x: b_0 + b_1 * x mean of y for x+ 1 = b_0 + b_1 * (x+1)
 	
-	
+assumng that x and y follos the SLR model and assuptions 1-5 hold, given the data (x_i, y_i) i = 1...n we may want to estimate
+	estimate parameters B_0, B_1, sigma^2
+		find out the linear relationship between x and y
+	carry out hypothesis tests about B_1 or construct confidence intervals (CI) about it.
+	given a future value, say x*, of the x variable. Prdict the corresponding value of y
 	
