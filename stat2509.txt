@@ -159,7 +159,8 @@ review t-test for a normal mean when sigma is unknown
 	a (1 - alpha) confidence interval for mu is given by
 		x_bar +- t_(n-1;alpha/2)(sx/sqrt(n))
 		
-		a conceptual formula for a (1 - alpha) t-interval of the nromal mean
+		a conceptual formula for a (1 - alpha) t-interval of the normal mean
+			estimator - t....(estimated s.e), estimator + t...(estimated s.e)
 		
 		
 the mathematics achievement tests scores (x_i) and final calculus grades (y_i) for 10 randomly chosen college fresmen as given as follows
@@ -176,3 +177,65 @@ student math test score x_i final calculus grade y_i
 10 52 75
 
 find the least squares estimates of b_0 and b_1 as well as the least squares fitted regression line
+
+
+finding a testing method for this problem
+	the LS estimator B_hat_1 = S_xy/ S_xx is a statistic under Assumptins 1-5 of the SLR model, we can show that the sampling distribuion of B_hat_1 is given by 
+	B_hat_1 ~ N(B_1, sigma^2/S_xx)
+	
+	ie a normal distribuion with mean B_1 (the parameter of interest) and s.e. sqrt(sigma^2, S_xx). Nte that the value of s.e. is unknown since sigma^2 is unknwown
+	
+	recall that sigma^2 can be estimated by s^2 = SSE / n - 2 so the s.e of B_hat_1 can be estimated by s.e_hat = sqrt( s^2/S_xx) = sqrt(SEE/n-e) / S_xx)
+	
+	noticing that B_1 is the mean of N(....) B_hat_1 is the estimator the mean B_1 with estimated s.e sqrt(s^2...) we can use a t-test to the test the hypothesis H_0: B_1  = 0 vs H_a: B_1 != 0
+	
+	test-statistic t = (B_hat_1 - 0) / sqrt(s^2/S_xx)
+	
+	under assumptions 1-5 and H_0: B_1 = 0 the above t statistic follows a t-distribuion with n - 2 d.f
+	
+	for a 2 level test if t> t_n-2;alpha/2 or t < - t_n-2;alpha/2 we reject H_0 in favor of H_a and conclude that there is a significant linear relationship between x and y;
+	otherwise we do not reject H_0 and conclude that there is no significant linear relationship between x and y_bar
+
+confidence interval for slope parameter B_1
+	A (1 - alpha) level onfidnece interval for B_1 is given by
+		(B_hat_1 +- t_n-2;alpha/2 * sqrt(s^2/S_xx))
+		estimator - t...(estimated s.e)
+		
+ANOVA and F-test for testing significant linear relationship between x and y
+	we now provide an alternative method for testing
+	h_0: B_1 = 0 vs H_a: B_1 != 0
+	(the same hypothesis testing problem as that for t-test)
+	using the so called (an)alysis (o)f (va)riance or ANOVA
+	
+	ANOVA and t-test for single regression both give the same conclusion
+	
+ANOVA
+	total sum of squares (TSS)
+		TSS := sum(y_i - y_bar)^2 = S_yy
+		associated d.f: n-1
+	sum of square for regression SSR:
+		SSR: sum(y_hat_i - y_bar)^2 = sum(b_hat_0 - b_hat_1 * x_i - y_bar)^2 = (S_xy)^2/S_xx
+		associated d.f: 1
+	mean square of regression (MSR)
+		MSR = SSR / (d.f of SSR) = SSR / 1
+	sum of squares of error (SSE):
+		SSE = S_yy - (S_xy)^2 / S_xx
+		associated d.f: n - 2
+	mean square of error MSE
+		MSE = SSE / df of SSE = SSE / n - 2 = s^2
+		
+	by the above formulas we can see that TSS = SSR + SSE and d.f of TSS = d.f of SSR + d.f of SSE 
+	
+source d.f SS MS F value
+regression 1 (150^2 / 196) (150^2 / 196)
+error 14 233 - (150^2 / 196) (233 - 150^2/196) / 14
+total  15 233
+
+F test for th slope paramater B_1
+	F = MSR / MSE = (SSR / 1) / (SSE / n-2)
+	
+	undr the null hypothesis h_0: b_1 = 0 the test statistic F follows a so called F distribution ith the numerator d.f being 1 and the denominator d.f being n-2 this F distribution is denoted as F_1,n-2 
+	only takes positive values, non-symmetric
+	
+	rejection region
+		for a 2 level test, when F value (value of the F test statistics) satisfies F > n_1,n-2;alpha we reject H_0 in favor of H_a and conclude that there i a significant linear relationship between x and y. If F <= F_1,n-2;alpha we do not reject H_0 and conclude there is no significant linear relationship between x and y.
