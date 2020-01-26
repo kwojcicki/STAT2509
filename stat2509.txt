@@ -104,7 +104,7 @@ Hypothesis testing
 B_0: the mean value of y when X = 0
 	reason:  the mean of y when x = 0 is: E(B_0 + B_1 * 0) = 0
 
-B_1: The change in mean of y when x inncreases by one unit
+B_1: The change in mean of y when x increases by one unit
 	reason: mean of y for a given x: b_0 + b_1 * x mean of y for x+ 1 = b_0 + b_1 * (x+1)
 	
 assumng that x and y follos the SLR model and assuptions 1-5 hold, given the data (x_i, y_i) i = 1...n we may want to estimate
@@ -112,4 +112,130 @@ assumng that x and y follos the SLR model and assuptions 1-5 hold, given the dat
 		find out the linear relationship between x and y
 	carry out hypothesis tests about B_1 or construct confidence intervals (CI) about it.
 	given a future value, say x*, of the x variable. Prdict the corresponding value of y
+
+finding the best fitting line and estiamte b_0 and b_1 using the method of least squares
+	suppose that x and y follows a SLR model since b_0 and b_1 are unknown parameters we do not know the true line b_0 + b_1x fitting through the data.
 	
+	we aim to use the data to determine the best line fitting through the data by estimating b_0 and b_1 using the so called method of least squares
+
+	a fitting line is defined by y_hat = b_0 + b_1 * x
+	for a given pair of b_0 and b_1 values. different pairs of (b_0, b_1) valaues define different fitting lines
+	For a given fitting line y_hat = b_0 + b_1 * x the squared fitting error for unit i given by (y_i - y_hat_i)^2 and the sum of squared errors for all units
+	
+	b_hat_1 = S_xy / S_xx and b_hat_0 = y_bar - b_hat_1 * x_bar
+	where x_bar = 1/n * sum x_i. y_bar = 1/n * sum y_i
+	
+	S_xy = sum(x_i * y_i) - 1/n * sum(x_i) * sum(y_i) (as in assignment)
+	and S_xx = sum((x_i - x_bar_)^2)
+	
+	b_hat_0 and b_hat_1 are called the least squares estimates of b_0 and b_1and the resutling fitting line y_hat = b_hat_0 + b_hat_1 * x also called the least squares line or regression line. y_hat_i is called the fitted value (or predicted value)
+	
+estiating sigma^2
+	after obtaining the LS fitting line, the sum of squared fitting error is given by (SSE) is given by sum( (y_i - y_hat_i)^2) = sum(y_i - (b_hat_0 + b_hat_1 x_I))^2 under assumptions (1)-(5) of the SLR model an unbiased of sigma^2 (the variance of E_i) 
+	
+	s^2 = SSE / n - 2, n because summing n times in SSE and 2 because two estimated parameters. note n - 2 is called degrees of freedom (d.f) of SSE.
+		n: # of terms to be summed
+		2: # two estimated parameters
+		
+inference about slope parameter B_1
+	Under the SLR model, if B_1 = 0 then y and  doesn't have a significant linear relationship and x will not be useful for explaining or predicting the value of y
+	
+	in this section, we study: if all assumptions (1) - (5) of the SLR model hold
+		(i) how to use t-tet ot tet whether y and x have a significant linear relationship
+		(ii) construct a confidence interval for B_1
+		
+review t-test for a normal mean when sigma is unknown
+	the t-test for H_0: mu = mu_0 versus H_a: mu != mu_0 when the population standard deviation sigma is unknown
+	test statistic t = (x_bar - mu_0)/(s_x/sqrt(n))
+	t follows a t distribution with n-1 degrees of freedom (d.f)
+		the d.f. of a t-test is the denominator in the expression s_2_x = (sum(x_i - x_bar)^2)/n-1
+	for a alpha level test we reject H_0 in favor H_a if t > t_n-1;alpha/2 or t < t_n-1;alpha/2 and we do not reject H_0 otherwise
+	
+	a conceptual formula for the test statistic t
+		x_bar estimator of mu
+		s_x/sqrt(n) estimated standard error (s.e.) of the estimator (note the true s.e sigma /sqrt(n) is unknown)
+		a conceptual formula for t = (estimator - mu) / (estimated s.e of the estimator)
+		
+	a (1 - alpha) confidence interval for mu is given by
+		x_bar +- t_(n-1;alpha/2)(sx/sqrt(n))
+		
+		a conceptual formula for a (1 - alpha) t-interval of the normal mean
+			estimator - t....(estimated s.e), estimator + t...(estimated s.e)
+		
+		
+the mathematics achievement tests scores (x_i) and final calculus grades (y_i) for 10 randomly chosen college fresmen as given as follows
+student math test score x_i final calculus grade y_i
+1 39 65
+2 43 78
+3 21 52
+4 65 82
+5 57 92
+6 47 89
+7 28 73
+8 75 98
+9 34 56
+10 52 75
+
+find the least squares estimates of b_0 and b_1 as well as the least squares fitted regression line
+
+
+finding a testing method for this problem
+	the LS estimator B_hat_1 = S_xy/ S_xx is a statistic under Assumptins 1-5 of the SLR model, we can show that the sampling distribuion of B_hat_1 is given by 
+	B_hat_1 ~ N(B_1, sigma^2/S_xx)
+	
+	ie a normal distribuion with mean B_1 (the parameter of interest) and s.e. sqrt(sigma^2, S_xx). Nte that the value of s.e. is unknown since sigma^2 is unknwown
+	
+	recall that sigma^2 can be estimated by s^2 = SSE / n - 2 so the s.e of B_hat_1 can be estimated by s.e_hat = sqrt( s^2/S_xx) = sqrt(SEE/n-e) / S_xx)
+	
+	noticing that B_1 is the mean of N(....) B_hat_1 is the estimator the mean B_1 with estimated s.e sqrt(s^2...) we can use a t-test to the test the hypothesis H_0: B_1  = 0 vs H_a: B_1 != 0
+	
+	test-statistic t = (B_hat_1 - 0) / sqrt(s^2/S_xx)
+	
+	under assumptions 1-5 and H_0: B_1 = 0 the above t statistic follows a t-distribuion with n - 2 d.f
+	
+	for a 2 level test if t> t_n-2;alpha/2 or t < - t_n-2;alpha/2 we reject H_0 in favor of H_a and conclude that there is a significant linear relationship between x and y;
+	otherwise we do not reject H_0 and conclude that there is no significant linear relationship between x and y_bar
+
+confidence interval for slope parameter B_1
+	A (1 - alpha) level onfidnece interval for B_1 is given by
+		(B_hat_1 +- t_n-2;alpha/2 * sqrt(s^2/S_xx))
+		estimator - t...(estimated s.e)
+		
+ANOVA and F-test for testing significant linear relationship between x and y
+	we now provide an alternative method for testing
+	h_0: B_1 = 0 vs H_a: B_1 != 0
+	(the same hypothesis testing problem as that for t-test)
+	using the so called (an)alysis (o)f (va)riance or ANOVA
+	
+	ANOVA and t-test for single regression both give the same conclusion
+	
+ANOVA
+	total sum of squares (TSS)
+		TSS := sum(y_i - y_bar)^2 = S_yy
+		associated d.f: n-1
+	sum of square for regression SSR:
+		SSR: sum(y_hat_i - y_bar)^2 = sum(b_hat_0 - b_hat_1 * x_i - y_bar)^2 = (S_xy)^2/S_xx
+		associated d.f: 1
+	mean square of regression (MSR)
+		MSR = SSR / (d.f of SSR) = SSR / 1
+	sum of squares of error (SSE):
+		SSE = S_yy - (S_xy)^2 / S_xx
+		associated d.f: n - 2
+	mean square of error MSE
+		MSE = SSE / df of SSE = SSE / n - 2 = s^2
+		
+	by the above formulas we can see that TSS = SSR + SSE and d.f of TSS = d.f of SSR + d.f of SSE 
+	
+source d.f SS MS F value
+regression 1 (150^2 / 196) (150^2 / 196)
+error 14 233 - (150^2 / 196) (233 - 150^2/196) / 14
+total  15 233
+
+F test for th slope paramater B_1
+	F = MSR / MSE = (SSR / 1) / (SSE / n-2)
+	
+	undr the null hypothesis h_0: b_1 = 0 the test statistic F follows a so called F distribution ith the numerator d.f being 1 and the denominator d.f being n-2 this F distribution is denoted as F_1,n-2 
+	only takes positive values, non-symmetric
+	
+	rejection region
+		for a 2 level test, when F value (value of the F test statistics) satisfies F > n_1,n-2;alpha we reject H_0 in favor of H_a and conclude that there i a significant linear relationship between x and y. If F <= F_1,n-2;alpha we do not reject H_0 and conclude there is no significant linear relationship between x and y.
