@@ -239,3 +239,57 @@ F test for th slope paramater B_1
 	
 	rejection region
 		for a 2 level test, when F value (value of the F test statistics) satisfies F > n_1,n-2;alpha we reject H_0 in favor of H_a and conclude that there i a significant linear relationship between x and y. If F <= F_1,n-2;alpha we do not reject H_0 and conclude there is no significant linear relationship between x and y.
+		
+why do we reject H_): B_1 = 0 when F-value is large
+	conceptual reason
+		recall F = SSR / SSE
+		SSR = sum(predicted y - y_bar)^2
+		SSE = sum(y_i 0 y_hat_i)^2
+		
+		If B_1 != 0 ie x is useful for explaining y_i then y_i - y_hat_i should be small on average as we learned, which gives a small value of SSE
+		at the same time y_hat_i should be close to y_i which makes SSR close to S_yy.
+		
+		On the other if B_1 = 0 then x is not useful for explanng y. Hence the squared fitting error (y_hat_i - y_i)^2 should be large, on average. In addition B_hat_1 approximately equal to B_1 = 0 => B_hat_0 = y_bar - B_hat_1 * x_bar close to y_bar
+		and hence SSR close to 0
+		
+		When B_1 != 0 F = SSR/SSE where SRR is close to S_yy and SSE is small ie F is large
+		When B_1 = 0 F = SSR / SSE where SSR close to 0 and SSE = large (close to S_yy) therefore a small F -value
+		
+Remarks about F tet and t test under SLR
+	Under SLR model suppose that asumptions 1-5 hold, 
+		both t test and F test are for testing the same hypothesis
+			H_0: B_1 = 0 vs H_a: B_1 != 0
+		t test statistic value and F test statistc value are not the same however the conclusion of the t test and of that F test are always the same ie both reject H_0 or neither rejects H_0
+		
+Coefficient of determinaton r^2
+	TSS = sum(y_i - y_bar)^2 a measure of total variation
+	SSR = sum(y_hat_i - y_bar)^2 the portion of the total varation that is expained by the regression of y on x
+	SSE = TSS - SSR the portion of TSS that is unexplained by the regression of y on x due to random error
+	
+The coeffficient of determination denoted r^2 is defined as r^2 = SSR / TSS
+	r^2 measures the percentage of the total variation in y that is explained by the regression of y on x
+	a large value of r^2 suggests that the regression of y on x is a useful for explaining the total variation in y. A small value of r^2 suggests that the regression of y on x is not very useful
+	
+	r^2 = (S_xy / sqrtS_xx * sqrtS_yy)^2
+	
+	Hence r^2 also measures the strength of the linaer relationship between x and y
+	larger r^2: stronger linear relationship between x and y and more TSS explainded
+	
+	since correlation coeffficient r satisfies -1 <= r <= 1 we have 0 <= r^2 <= 1
+	
+	The r^2 value can be calculated using the ANOVA table: r^2 = SSR / TSS
+
+Confidence interval for the mean line E(y) = B_0 + B_1 * x
+	Recall Y ~ N(B_0 + B_1 * x, sigma^2)
+	In SLR we assumed that this relationship is true for any observed (y_i, x_i) and aso true for any future or unobserved pair.
+	This imlies that E(y) = B_0 + B_1 * x and hence the straight line B_0 + B_1 * x is called the mean line for y
+	
+	now for a new value say x* of x denoate the corresponding y value under the SLR as y_x* ie y_x* = B_0 + B_1 * X* + epsilon
+	
+	we have E(y_x*) = B_0 + B_1 * X*, E(y_x*) a paramter
+	
+	given x* we can obtain the estiamted value of y_x* (the true value is unknown) by y_hat_x* = b_hat_0 + b_hat_1 * x* (a statitic)
+	
+	it can be shown that, under assumptions 1-5, the sampling distribution of y_hat_x* is
+	
+	
