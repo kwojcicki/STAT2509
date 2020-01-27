@@ -29,19 +29,49 @@ treadmill at a specified angle and speed. The important question is then “Does
 of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be at top condition were evaluated on the treadmill
 and then had their times recorded in a 10-km race. The data are given in the table below.:\\
 \begin{center}
- \begin{tabular}{||c c c c||} 
+ \begin{tabular}{||c c||} 
  \hline
- Col1 & Col2 & Col2 & Col3 \\ [0.5ex] 
+Treadmill time in minutes (x) & 10-km time in minutes (y) \\ [0.5ex] 
  \hline\hline
- 1 & 6 & 87837 & 787 \\ 
+7.5 & 43.5 \\
  \hline
- 2 & 7 & 78 & 5415 \\
+7.8 & 45.2 \\
  \hline
- 3 & 545 & 778 & 7507 \\
+7.9 & 44.9 \\
  \hline
- 4 & 545 & 18744 & 7560 \\
+8.1 & 41.1 \\
  \hline
- 5 & 88 & 788 & 6344 \\ [1ex] 
+8.3 & 43.8 \\
+ \hline
+8.7 & 44.4 \\
+ \hline
+8.9 & 38.7 \\
+ \hline
+9.2 & 43.1 \\
+ \hline
+9.4 & 41.8 \\
+ \hline
+9.8 & 43.7 \\
+ \hline
+10.1 & 39.5 \\
+ \hline
+10.3 & 38.2 \\
+ \hline
+10.5 & 43.9 \\
+ \hline
+10.7 & 37.1 \\
+ \hline
+10.8 & 37.7 \\
+ \hline
+10.9 & 39.2 \\
+ \hline
+11.2 & 35.7 \\
+ \hline
+11.5 & 37.2 \\
+ \hline
+11.7 & 34.8 \\
+ \hline
+11.8 & 38.5  \\ [1ex]
  \hline
 \end{tabular}
 \end{center}
@@ -49,7 +79,8 @@ and then had their times recorded in a 10-km race. The data are given in the tab
 \begin{enumerate}[(a)]
   \item \textbf{Draw a scatter plot (using SAS, see part (i)) to get an idea of the form of the relationship
 between the treadmill time (x) and 10-km running time (y). Does the scatter plot suggest
-an approximate linear relationship between the two variables?: } a characteristic that varies from a person or a thing to another one, or over time.
+an approximate linear relationship between the two variables?: }
+See SAS output attatched \\
   \item \textbf{State a simple linear regression (SLR) model for two variables and describe all assumptions that are necessary for statistical inference.
 : } \\
 Model $y = \beta_0 + \beta_1 * x+ \epsilon, n = 20$.
@@ -58,7 +89,7 @@ Assumptions
    \item The random errors $\epsilon_i$'s are mutually independent.
    \item $\epsilon_i$'s are normally distributed
    \item $\epsilon_i$'s have common mean 0 in other words $E(\epsilon_i) = 0$ for all $i$.
-   \item $\epsilon_i$'s have common variance $\sigma^2$ meaning $Var(\epsilon_i) = \sigma^2)$ for all $i$
+   \item $\epsilon_i$'s have common variance $\sigma^2$ meaning $Var(\epsilon_i) = \sigma^2$ for all $i$
   \item $x$'s are observed without error.
 \end{enumerate}
   \item \textbf{Find the least squares estimates of $\beta_0$ and $\beta_1$ in the SLR model. Find the least square
@@ -96,13 +127,14 @@ Since we are using a t-test, our test statistic is t and $t= \frac{\hat{\beta_1}
 
 Rejection region, we reject $H_0$ if $|t| > t_{\alpha/2;n-2} = t_{0.025;18} = 2.101$
 
-Since $|t| = |-5.39| = 5.39 > 2.101$, we reject $H_0$ and we can conclude that at $\alpha = 0.05$ or 5\% level there is evidence that there is a linear relationship between 10-km running time and the treadmill time.
+Since $|t| = |-5.39| = 5.39 > 2.101$, we reject $H_0$ and we can conclude that at $\alpha = 0.05$ or 5\% level of significance there is evidence that there is a linear relationship between 10-km running time and the treadmill time.
 
   \item \textbf{ Find a 95\% confidence interval for $\beta_1$.: }
 
 $1 - \alpha = 0.95 \to \alpha = 0.05 \to \alpha/2 = 0.025$
 
-Therefore $\beta_1$'s 95\% confidence interval is $(\hat{\beta_1} \pm t_{\alpha/2;n-2}\frac{s}{\sqrt{S_{xx}}}) = (-1.87 \pm 2.101 * \frac{2.10}{\sqrt{36.85}}) = (-2.59474163696, -1.13990876535) \simeq (-2.60, -1.14) $. And we can be 95\% confident that the true value of $\beta_1$ lies in the interval $(-2.60, -1.14)$.
+Therefore $\beta_1$'s 95\% confidence interval is \\ 
+$(\hat{\beta_1} \pm t_{\alpha/2;n-2}\frac{s}{\sqrt{S_{xx}}}) = (-1.87 \pm 2.101 * \frac{2.10}{\sqrt{36.85}}) = (-2.59474163696, -1.13990876535) \simeq (-2.60, -1.14) $. And we can be 95\% confident that the true value of $\beta_1$ lies in the interval $(-2.60, -1.14)$.
 
   \item \textbf{ Set up the ANOVA table and use it to test whether there is a significant linear relationship between 10-km running time and the treadmill time. Use $\alpha$ = 0.05.: }
 
@@ -111,9 +143,21 @@ $SSR = \frac{S_{xy}^2}{S_{xx}} = \frac{ (7852.25 - \frac{195.1 * 812}{20})^2}{ 1
 $SSE = TSS - SSR = 208 - 128.49 = 79.51 $ \\ 
 $MSR = SSR/1 = 128.49 $ \\ 
 $MSE = \frac{SSE}{n-2} = \frac{79.51}{18} = 4.42$ \\
-$F = \frac{MSR}{MSE} = \frac{128.49}{4.42} =  29.09 $
+$F = \frac{MSR}{MSE} = \frac{128.49}{4.42} =  29.09 $ \\
 
-TODO: table
+\begin{center}
+ \begin{tabular}{||c c c c c||} 
+ \hline
+Source & d.f & SS & MS & F \\ [0.5ex] 
+ \hline\hline
+Regression & 1 & 128.49 & 128.49 & 29.09 \\
+ \hline
+Error & 18 & 79.51 & 4.42 &  \\
+ \hline
+Total & 19  & 208 & & \\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
 
 $H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$
 With $\alpha = 0.05$.
@@ -126,11 +170,17 @@ Since $F = 29.09 > 4.41$ we can reject $H_0$ and conclude that at a 5\% level of
 
   \item \textbf{ Find the values of the coefficient of correlation, r, and the coefficient of determination,$r^2$, and interpret their meaning in this problem.: }
 
-$r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}} = \frac{7852.25-\frac{195.1*812}{20}}{\sqrt{ (1940.05 - \frac{195.1^2}{20}) * (33175.2-\frac{812^2}{20})}} = -0.785966599565 \simeq -0.79$
+$r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}} = \frac{7852.25-\frac{195.1*812}{20}}{\sqrt{ (1940.05 - \frac{195.1^2}{20}) * (33175.2-\frac{812^2}{20})}} = -0.785966599565 \simeq -0.79$ \\
 
-$r^2 = \frac{SSR}{TSS} = \frac{128.49}{208} = 0.617740384615 \simeq 0.62$
+Therefore the 10-km running time and the treadmill time are quite strongly negatively correlated with the strength of their relationship close to 78.60\%.
+
+$r^2 = \frac{SSR}{TSS} = \frac{128.49}{208} = 0.617740384615 \simeq 0.62$ \\
+
+Therefore approximately 61.77\% of the total variation in the data can be explainded by the regression line and the remaining \% is due to error.
 
   \item \textbf{Verify your results for (b) to (h) using SAS.}
+See SAS output attatched
+
 
 \end{enumerate}
 
@@ -146,10 +196,22 @@ minutes. What can you say about the widths of these two intervals.:}
 
 $\hat{y} = 58.82 - 1.87(9.5) = 41.055$ and since $1 - \alpha \to 0.95 \to \alpha = 0.05 \to \alpha/2 = 0.025$
 
-Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749)$
+Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749)$. So we are 95\% confident that after repeating sampling the mean value of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(40.00, 42.07)$. \\
 
-Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (36.4714602301, 45.5885397699)$
+95\% prediction interval for $y$ when $x_p = 9.5$
+
+Therefore $y$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (36.4714602301, 45.5885397699)$. So we are 95\% confident that after repeating sampling the vaue of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(36.47, 45.59)$. \\
+
+The P.I is wider than the C.I. this is expected as the variability in the error for predicting a single value is greater than the variaility of error for the estimation of the mean or average value of y.
+
+\item \textbf{Use SAS to answer subquestion 2(a) and compare your SAS results to your handcalculated results. (See Part (c) of the SAS example.)}
+
+See SAS output attatched.
 
 \end{enumerate}
+
+\item \textbf{Perform a residual analysis to check the SLR model assumptions using SAS (see Part (b) of
+the SAS example). What can you conclude?}
+
 \end{enumerate}
 \end{document}
