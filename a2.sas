@@ -1,4 +1,5 @@
-Footnote 'Krystian Wojcicki, 101001444';
+footnote 'Krystian Wojcicki, 101001444'; 
+
 Data Run_Time;
 Input treadmill_time tenkm_time @@;
 Cards;
@@ -7,9 +8,10 @@ Cards;
   11.7 34.8 11.8 38.5
 Run;
 
-ods graphis off;
+ods pdf file="example1-output.pdf";
+ods graphics off;
 
-Proc Reg;
+Proc reg;
   Model tenkm_time=treadmill_time;
   Plot tenkm_time*treadmill_time;
 Run;
@@ -26,7 +28,7 @@ Proc Reg;
   Model tenkm_time=treadmill_time/CLM CLI;
 Run;
 
-Proc Reg;
+Proc reg;
   Model tenkm_time=treadmill_time;
   Plot R.*P.;
   Plot R.*treadmill_time;
@@ -35,3 +37,5 @@ Run;
 Proc Chart;
   vbar resids;
 Run;
+
+ods pdf close
