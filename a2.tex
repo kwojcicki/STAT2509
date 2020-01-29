@@ -176,7 +176,7 @@ Therefore the 10-km running time and the treadmill time are quite strongly negat
 
 $r^2 = \frac{SSR}{TSS} = \frac{128.49}{208} = 0.617740384615 \simeq 0.62$ \\
 
-Therefore approximately 61.77\% of the total variation in the data can be explainded by the regression line and the remaining \% is due to error.
+Therefore approximately 61.77\% of the total variation in the data can be explainded by the regression line and the remaining \% is due to error. And conclusion that the model is a good fit to the data as $r^2 > 50\%$
 
   \item \textbf{Verify your results for (b) to (h) using SAS.}
 See SAS output attatched
@@ -196,11 +196,14 @@ minutes. What can you say about the widths of these two intervals.:}
 
 $\hat{y} = 58.82 - 1.87(9.5) = 41.055$ and since $1 - \alpha \to 0.95 \to \alpha = 0.05 \to \alpha/2 = 0.025$
 
-Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749)$. So we are 95\% confident that after repeating sampling the mean value of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(40.00, 42.07)$. \\
+Therefore $E(9.5)$ falls into the interval \\
+$(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749) \simeq (40.00, 42.07)$. So we are 95\% confident that after repeating sampling the mean value of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(40.00, 42.07)$. \\
 
 95\% prediction interval for $y$ when $x_p = 9.5$
 
-Therefore $y$ falls into the interval $(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (36.4714602301, 45.5885397699)$. So we are 95\% confident that after repeating sampling the vaue of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(36.47, 45.59)$. \\
+Therefore $y$ falls into the interval \\
+$(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = \\
+(36.4714602301, 45.5885397699) \simeq (36.47, 45.59)$. So we are 95\% confident that after repeating sampling the vaue of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(36.47, 45.59)$. \\
 
 The P.I is wider than the C.I. this is expected as the variability in the error for predicting a single value is greater than the variability of error for the estimation of the mean or average value of y.
 
@@ -214,4 +217,9 @@ See SAS output attatched.
 the SAS example). What can you conclude?}
 
 \end{enumerate}
+
+\begin{center}
+	\includegraphics{a2_sascode}
+\end{center}
+
 \end{document}
