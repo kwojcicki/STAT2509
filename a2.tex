@@ -112,7 +112,7 @@ $s^2 = \frac{SSE}{n-2} = \frac{S_{yy} - \frac{S_{xy}^2}{S_{xx}}}{n-2} = \frac{  
 \frac{   ( \sum_{i=1}^{n}{x_iy_i }  - \frac{  \sum_{i=1}^{n}{x_i}  \sum_{i=1}^{n}{y_i}  }{n})^2     }
 {    (\sum_{i=1}^{n}{x_i^2} - \frac{ (\sum_{i=1}^{n}{x_i})^2}{n} )     }}
 {n - 2}$ \\
-$ = \frac{ (33175.2 - \frac{812^2}{20}) - \frac{ (7852.25 - \frac{195.1 * 812}{20})^2}{1940.05-\frac{195.1^2}{20}}  }{18} = 4.41718627269 \simeq 4.42 $
+$ = \frac{ (33175.2 - \frac{812^2}{20}) - \frac{ (7852.25 - \frac{195.1 * 812}{20})^2}{1940.05-\frac{195.1^2}{20}}  }{18} = \frac{208 - 128.49}{18} = 4.41718627269 \simeq 4.42 $
 \endgroup
 
 Therefore $s = \sqrt{s^2} = \sqrt{4.42} = 2.10171032083 \simeq 2.10$
@@ -125,7 +125,7 @@ $\alpha = 0.05 \to \alpha/2 = 0.025$
 
 Since we are using a t-test, our test statistic is t and $t= \frac{\hat{\beta_1} - 0}{s/\sqrt{S_{xx}}} = \frac{-1.87}{2.10/\sqrt{36.8495}} = -5.3934 \simeq -5.39$
 
-Rejection region, we reject $H_0$ if $|t| > t_{\alpha/2;n-2} = t_{0.025;18} = 2.101$
+Rejection region, we reject $H_0$ if $|t| > t_{n-2;\alpha/2} = t_{18;0.025} = 2.101$
 
 Since $|t| = |-5.39| = 5.39 > 2.101$, we reject $H_0$ and we can conclude that at $\alpha = 0.05$ or 5\% level of significance there is evidence that there is a linear relationship between 10-km running time and the treadmill time.
 
@@ -134,7 +134,7 @@ Since $|t| = |-5.39| = 5.39 > 2.101$, we reject $H_0$ and we can conclude that a
 $1 - \alpha = 0.95 \to \alpha = 0.05 \to \alpha/2 = 0.025$
 
 Therefore $\beta_1$'s 95\% confidence interval is \\ 
-$(\hat{\beta_1} \pm t_{\alpha/2;n-2}\frac{s}{\sqrt{S_{xx}}}) = (-1.87 \pm 2.101 * \frac{2.10}{\sqrt{36.85}}) = (-2.59474163696, -1.13990876535) \simeq (-2.60, -1.14) $. And we can be 95\% confident that the true value of $\beta_1$ lies in the interval $(-2.60, -1.14)$.
+$(\hat{\beta_1} \pm t_{n-2;\alpha/2}\frac{s}{\sqrt{S_{xx}}}) = (-1.87 \pm 2.101 * \frac{2.10}{\sqrt{36.85}}) = (-2.59474163696, -1.13990876535) \simeq (-2.60, -1.14) $. And we can be 95\% confident that in repeated sampling the true value of $\beta_1$ would lie in the interval $(-2.60, -1.14)$.
 
   \item \textbf{ Set up the ANOVA table and use it to test whether there is a significant linear relationship between 10-km running time and the treadmill time. Use $\alpha$ = 0.05.: }
 
@@ -162,7 +162,7 @@ Total & 19  & 208 & & \\ [1ex]
 $H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$
 With $\alpha = 0.05$.
 
-Using F-test so statistic is $F - \frac{MSR}{MSE} = 29.09$
+Using F-test so statistic is $F = \frac{MSR}{MSE} = 29.09$
 
 Rejection region, we reject $H_0$ if $F > F_{1,n-2;\alpha} = F_{1,18;0.05} = 4.41$.
 
@@ -196,13 +196,13 @@ minutes. What can you say about the widths of these two intervals.:}
 
 $\hat{y} = 58.82 - 1.87(9.5) = 41.055$ and since $1 - \alpha \to 0.95 \to \alpha = 0.05 \to \alpha/2 = 0.025$
 
-Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749)$. So we are 95\% confident that after repeating sampling the mean value of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(40.00, 42.07)$. \\
+Therefore $E(9.5)$ falls into the interval $(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{\frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (39.9953486251, 42.0646513749)$. So we are 95\% confident that after repeating sampling the mean value of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(40.00, 42.07)$. \\
 
 95\% prediction interval for $y$ when $x_p = 9.5$
 
-Therefore $y$ falls into the interval $(\hat{y} \pm t_{\alpha/2, n-2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (36.4714602301, 45.5885397699)$. So we are 95\% confident that after repeating sampling the vaue of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(36.47, 45.59)$. \\
+Therefore $y$ falls into the interval $(\hat{y} \pm t_{n-2;\alpha/2} * s * \sqrt{ 1+ \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}}) = (41.06 \pm 2.101 * 2.10 * \sqrt{1 + \frac{1}{20} + \frac{(41.06 - 9.755)^2}{ 1940.05 - \frac{195.1^2}{20}} }) = (36.4714602301, 45.5885397699)$. So we are 95\% confident that after repeating sampling the vaue of the 10-km running time when the treadmill time is 9.5 minutes would fall in the interval $(36.47, 45.59)$. \\
 
-The P.I is wider than the C.I. this is expected as the variability in the error for predicting a single value is greater than the variaility of error for the estimation of the mean or average value of y.
+The P.I is wider than the C.I. this is expected as the variability in the error for predicting a single value is greater than the variability of error for the estimation of the mean or average value of y.
 
 \item \textbf{Use SAS to answer subquestion 2(a) and compare your SAS results to your handcalculated results. (See Part (c) of the SAS example.)}
 

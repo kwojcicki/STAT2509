@@ -293,3 +293,4 @@ Confidence interval for the mean line E(y) = B_0 + B_1 * x
 	it can be shown that, under assumptions 1-5, the sampling distribution of y_hat_x* is
 	
 	
+	
