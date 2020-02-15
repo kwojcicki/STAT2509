@@ -12,7 +12,7 @@
 \usepackage{enumerate}
 \graphicspath{ {.} }
 \title{STAT 2509B4 \\
-	\large{Assignment 1}}
+	\large{Assignment 2}}
 \author{Krystian Wojcicki, 101001444}
 \date{Winter 2020}
 
@@ -20,8 +20,20 @@
 \maketitle
 
 
+Indicate whether or not each of the following models can be treated as an multiple linear
+regression (MLR) model:
+\begin{enumerate}[(i)]
+
+\item  $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_1x_2 + \epsilon $, can be treated as MLR
+\item  $y = (e^{\beta_0 + \beta_1x_1 + \beta_2x_2^2})\epsilon$, cannot be treated as MLR
+\item  $y = \beta_0 + \beta_1x_1 + \beta_2e^{x_1} + \epsilon$, can be treated as MLR
+\item  $y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_3x_1^3 + \beta_4x_2 + \epsilon$, can be treated as MLR
+\item $y = \beta_0e^{\beta_1x_1 + \beta_2x_2} + \epsilon$, cannot be treated as MLR
+
+\end{enumerate}
+
 \begin{enumerate}[(a)]
-\item \textbf{State the MLR model and all assumptions which are necessary for the statistical inference: } \\
+\item \textbf{State all the assumptions that are necessary for the statistical inference under the MLR model.: } \\
 Model $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \epsilon, n = $ TODO \\
 Assumptions
   \begin{enumerate}[(1)]
@@ -32,7 +44,8 @@ Assumptions
   \item $\epsilon \sim N(0, \sigma^2)$ for any value of $X_1, X_2$
 \end{enumerate}
 
-\item \textbf{Use matrices to compute the estimates of the population parameters $\beta_0,\beta_1,\beta_2$ and hence obtain the fitted least squares prediction line: } \\
+\item \textbf{Use matrices to compute the least-squares estimates of the population parameters $\beta_0$, $\beta_1$ and $\beta_2$, and obtain the fitted least-squares regression line:  \\
+\includegraphics{a3_hint}} \\
 
 $(X^TX)^{-1} X^TY = \begin{bmatrix}
 2.3963567 & 0.11058177 & -0.8271483 \\
@@ -56,57 +69,73 @@ $(X^TX)^{-1} X^TY = \begin{bmatrix}
 \end{bmatrix} = \hat{\beta}$
 
 
-\item \textbf{Set up the ANOVA table: } \\
-$TSS = Y^TY - \frac{(\sum_{i=1}^{n}{y_i})^2}{n} = \sum_{i=1}^{n}{y_i^2} - \frac{(\sum_{i=1}^{n}{y_i})^2}{n} $
+\item \textbf{ Set up the ANOVA table and test for significance of the model at the significance level of $\alpha$ = 0.05 } \\
+$TSS = Y^TY - \frac{(\sum_{i=1}^{n}{y_i})^2}{n} = \sum_{i=1}^{n}{y_i^2} - \frac{(\sum_{i=1}^{n}{y_i})^2}{n}  = 228230 - \frac{2380^2}{25} = 1654$
 
-$SSR = \hat{\beta^T}(X^TY)  - \frac{(\sum_{i=1}^{n}{y_i})^2}{n}  = $
+$SSR = \hat{\beta^T}(X^TY)  - \frac{(\sum_{i=1}^{n}{y_i})^2}{n}  = \begin{bmatrix}
+57.2642 & 5.80416 & 3.31483
+\end{bmatrix} * \begin{bmatrix}
+2380.00 \\
+11072.00 \\
+8306.16 \\
+\end{bmatrix} - \frac{2380^2}{25} = 1509.9638728$
 
-$SSE = TSS - SSR = $
-$MSR = \frac{SSR}{k} = $
-$MSE = \frac{SSE}{n-(k+1)} = $
-$F = \frac{MSR}{MSE}$
+$SSE = TSS - SSR = 1654 - 1509.9638727 = 144.0361272$
+$MSR = \frac{SSR}{k} = \frac{1509.9638728}{2} = 754.9819364$
+$MSE = \frac{SSE}{n-(k+1)} = \frac{144.0361272}{22} = 6.547$
+$F = \frac{MSR}{MSE} = \frac{754.9819364}{6.547} = 115.317$
 
 \begin{center}
  \begin{tabular}{||c c c c c||} 
  \hline
 Source & d.f & SS & MS & F \\ [0.5ex] 
  \hline\hline
-Regression & 1 & 128.49 & 128.49 & 29.09 \\
+Regression & 2 & 1509.9638728 & 754.9819364 & 115.317 \\
  \hline
-Error & 18 & 79.51 & 4.42 &  \\
+Error & 22 & 144.0361272 &  6.547 &  \\
  \hline
-Total & 19  & 208 & & \\ [1ex]
+Total & 24  & 1654 & & \\ [1ex]
  \hline
 \end{tabular}
 \end{center}
 
 $H_0: \beta_1 = \beta_2 = 0$ \\
 $H_a: \text{at least one of the } \beta's \neq 0$ \\
-$\alpha = $ TODO
+$\alpha = 0.05$
 
-test-statistics: $F = \frac{MSR}{MSE}$
+test-statistics: $F = \frac{MSR}{MSE} = 115.317$
 
-Rejection region, we rejected $H_0$ if $F > F_{(k, n-(k+1)), \alpha}$
+Rejection region, we rejected $H_0$ if $F > F_{(k, n-(k+1)), \alpha} = F_{2, 22; 0.05} = 3.4434$
 
-\item \textbf{Test whether x term: } \\
+Since $F = 115.317 > 3.4434$, we reject $H_0$ and conclude that at a 5\% level of significance there is evidence to say there is a linear relationship between age, weight and the systolic BP.
+
+\item \textbf{ Test whether age (x1) contributes to explaining (or predicting) the systolic blood pressure (y) under the MLR model. Use t-test with $\alpha = 0.05$. } \\
 
 $H_0: \beta_1 = 0$
 $H_a: \beta_1 \neq 0$
 $\alpha = \to \alpha/2 =  $
 
-test statistics: $t = \frac{\hat{\beta_1}}{\sqrt{v_{11}MSE}}$
+test statistics: $t = \frac{\hat{\beta_1}}{\sqrt{v_{11}MSE}} = \frac{5.80416}{\sqrt{0.0683459 * 6.547}} = 8.677$
 
-\item \textbf{Find the values of: } \\
+Rejection region, we reject $H_0$ if $|t| > t_{n-(k+1), \alpha/2} = 2.07383$.
 
-$r^2 = \frac{SSR}{TSS} = $
+Since $t = 8.677 > 2.07$, we reject $H_0$ and conclud that at a 5\% level of significance there is evidence to say that the $x_1$ term contributes to the model.
 
-$r_{adj}^2 = 1 - \frac{SSE/n-(k+1)}{TSS/n-1} = 1 - \frac{MSE}{TSS/n-1}= $
+\item \textbf{ Find the values of the coefficient of determination, $r^2$, and the adjusted $r^2$. Interpret their meanings in this problem} \\
 
-\item \textbf{Run SAS to verify your above results: } \\
+$r^2 = \frac{SSR}{TSS} = \frac{1509.9638727}{1654} = 0.9129 = 91.29\%$
+
+In other words approximately 91.29\% of the total variation in the data is explined by the regression line. The rest is due to error.
+
+$r_{adj}^2 = 1 - \frac{SSE/n-(k+1)}{TSS/n-1} = 1 - \frac{MSE}{TSS/n-1} = 1 - \frac{6.547}{1654/24} = 0.9050 = 90.50\%$
+
+Since both $r^2$ and $r_{adj}^2$ are quite high, around 90\%, and since the $x_1$ term does contribute to the model, we can conclude that the model is good.
+
+\item \textbf{ Run SAS to verify your answers to the above questions. In addition, use the SAS output to answer subquestion (d) using the partial F-test with $\alpha$ = 0.05.} See attatched SAS output
 
 $H_0: \beta_1 = 0$
 $H_a: \beta_1 \neq 0$
-$\alpha = $
+$\alpha = 0.05$
 
 full model: $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \epsilon$
 reduced model: $y = \beta_0 + \beta_2x_2 + \epsilon$
@@ -114,62 +143,88 @@ reduced model: $y = \beta_0 + \beta_2x_2 + \epsilon$
 test statistics:
 $F_{part} = \frac{ [SSR_f - SSR_r] / [df_{SSR_f} - df_{SSR_r} ] }{ SSE_f / df_{SEE_f} } = $
 
+Rejection Region, we reject $H_0$ if $F_{part} > F_{(1, 22); 0.05 = TODO$
 
 \end{enumerate}
+
+
+$y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_1x_2 + \beta_5x_1x_3 + \epsilon$
+
+Full mode: $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_1x_2 + \beta_5x_1x_3 + \epsilon$
+
+If drug A: $y = \beta_0 + \beta_1x_1 + \epsilon$
+
+If drug B: $y = \beta_0 + \beta_1x_1 + \beta_2 + \beta_4x_1 \epsilon$
+
+If drug C: $y = \beta_0 + \beta_1x_1 + \beta_3 + \beta_5x_1 + \epsilon$
+
+Test if any of the 3 drug lines are parallel or have the same slope
+$H_0: \beta_4 = \beta_5 = 0$
+$H_a:$ at least one of the $\beta$'s $neq 0$.
+$\alpha = 0.05$
+
+Reduce model
 
 \begin{enumerate}[1.]
 \item
 
-\textbf{Athletes are constantly seeking measures of the degree of their cardiovascular fitness prior
-to a major race. Athletes want to know when their training is at a level that will produce a
-peak performance. One such measure of fitness is the time to exhaustion from running on a
-treadmill at a specified angle and speed. The important question is then “Does this measure
-of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be at top condition were evaluated on the treadmill
-and then had their times recorded in a 10-km race. The data are given in the table below.:\\
+\textbf{ A medical study was conducted to study the relationship between infants’ systolic blood
+pressure and two explanatory variables, age (days) and weight (kg). The data for 25 infants
+are given below..:\\
 \begin{center}
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c||} 
  \hline
-Treadmill time in minutes (x) & 10-km time in minutes (y) \\ [0.5ex] 
+Age ($x_1)$ & Treadmill time in minutes ($x_2$) & Systoli BP (y) \\ [0.5ex] 
  \hline\hline
-7.5 & 43.5 \\
- \hline
-7.8 & 45.2 \\
- \hline
-7.9 & 44.9 \\
- \hline
-8.1 & 41.1 \\
- \hline
-8.3 & 43.8 \\
- \hline
-8.7 & 44.4 \\
- \hline
-8.9 & 38.7 \\
- \hline
-9.2 & 43.1 \\
- \hline
-9.4 & 41.8 \\
- \hline
-9.8 & 43.7 \\
- \hline
-10.1 & 39.5 \\
- \hline
-10.3 & 38.2 \\
- \hline
-10.5 & 43.9 \\
- \hline
-10.7 & 37.1 \\
- \hline
-10.8 & 37.7 \\
- \hline
-10.9 & 39.2 \\
- \hline
-11.2 & 35.7 \\
- \hline
-11.5 & 37.2 \\
- \hline
-11.7 & 34.8 \\
- \hline
-11.8 & 38.5  \\ [1ex]
+3 & 2.61 & 80 \\
+\hline
+4 & 2.67 & 90 \\
+\hline
+5 & 2.98 & 96\\
+\hline
+6 & 3.98 & 102\\
+\hline
+3 & 2.87 & 81\\
+\hline
+4 & 3.41 & 96\\
+\hline
+5 & 3.49 & 99\\
+\hline
+6 & 4.03 & 110\\
+\hline
+3 & 3.41 & 88\\
+\hline
+4 & 2.81 & 90\\
+\hline
+5 & 3.24 & 100\\
+\hline
+6 & 3.75 & 102\\
+\hline
+3 & 3.18 & 86\\
+\hline
+4 & 3.13 & 93\\
+\hline
+5 & 3.98 & 101\\
+\hline
+6 & 4.55 & 103\\
+\hline
+3 & 3.41 & 86\\
+\hline
+4 & 3.35 & 91\\
+\hline
+5 & 3.75 & 100\\
+\hline
+6 & 3.83 & 105\\
+\hline
+3 & 3.18 & 84\\
+\hline
+4 & 3.52 & 91\\
+\hline
+5 & 3.49 & 95\\
+\hline
+6 & 3.81 & 104\\
+\hline
+6 & 4.03 & 107  \\ [1ex]
  \hline
 \end{tabular}
 \end{center}
