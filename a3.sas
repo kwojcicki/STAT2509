@@ -34,7 +34,7 @@ ods graphics off;
 
 Proc Reg;
 	Model Bp=Age Weight;
-	Model Bp=Age;
+	Model Bp=Weight;
 Run;
 
 

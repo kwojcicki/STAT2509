@@ -192,7 +192,7 @@ In other words approximately 92.13\% of the total variation in the data is expli
 
 $r_{adj}^2 = 1 - \frac{SSE/n-(k+1)}{TSS/n-1} = 1 - \frac{MSE}{TSS/n-1} = 1 - \frac{5.920359}{1654/24} = 0.9141 = 91.41\%$
 
-Since both $r^2$ and $r_{adj}^2$ are quite high, around 90\%, and since the $x_1$ term does contribute to the model, we can conclude that the model is good.
+Since both $r^2$ and $r_{adj}^2$ are quite high (above 80\%), both have similar values around 90\%, and since the $x_1$ term does contribute to the model, we can conclude that the model is good.
 
 \item \textbf{ Run SAS to verify your answers to the above questions. In addition, use the SAS output to answer subquestion (d) using the partial F-test with $\alpha$ = 0.05.} See attatched SAS output
 
@@ -205,16 +205,16 @@ reduced model: $y = \beta_0 + \beta_2x_2 + \epsilon$ \\
 
 $SSR_f = 1521.53295$ with d.f $= 2$ \\
 $SSE_f = 132.46705$ with d.f $= 22$ \\
-$SSR_r = 1494.04975$ with d.f $= 1$ \\
-$SSE_r = 159.95025$ with d.f $=23$ \\
+$SSR_r = 1028.63536$ with d.f $= 1$ \\
+$SSE_r = 625.36464$ with d.f $=23$ \\
 
 
 test statistics:
-$F_{part} = \frac{ [SSR_f - SSR_r] / [df_{SSR_f} - df_{SSR_r} ] }{ SSE_f / df_{SSE_f} } = \frac{ (1521.53295 - 1494.04975) / (2 - 1) }{  132.46705 / 22} = 4.564$
+$F_{part} = \frac{ [SSR_f - SSR_r] / [df_{SSR_f} - df_{SSR_r} ] }{ SSE_f / df_{SSE_f} } = \frac{ (1521.53295 - 1028.63536) / (2 - 1) }{  132.46705 / 22} = 81.85996$
 
 Rejection Region, we reject $H_0$ if $F_{part} > F_{(1, 22); 0.05} = 4.3009$
 
-Since $F_{part} = 4.565 > 4.3009$ we reject $H_0$ and conclude that at a 5\% level of significance there is enough evidence to say that the $X_1$ (age) term contributes to the model.
+Since $F_{part} = 81.85996 > 4.3009$ we reject $H_0$ and conclude that at a 5\% level of significance there is enough evidence to say that the $X_1$ (age) term contributes to the model.
 
 \end{enumerate}
 
@@ -242,9 +242,9 @@ Full model: $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_1x_2 
 
 If drug A: $y = \beta_0 + \beta_1x_1 + \epsilon$
 
-If drug B: $y = \beta_0 + \beta_1x_1 + \beta_2 + \beta_4x_1 + \epsilon$
+If drug B: $y = \beta_0 + \beta_1x_1 + \beta_2 + \beta_4x_1 + \epsilon = (\beta_0 + \beta_2) + (\beta_1 + \beta_4)x_1 + \epsilon$
 
-If drug C: $y = \beta_0 + \beta_1x_1 + \beta_3 + \beta_5x_1 + \epsilon$ \\
+If drug C: $y = \beta_0 + \beta_1x_1 + \beta_3 + \beta_5x_1 + \epsilon = (\beta_0 + \beta_3) + (\beta_1 + \beta_5)x_1 + \epsilon$ \\
 
 Test if any of the 3 drug lines are parallel or have the same slope: \\
 $H_0: \beta_4 = \beta_5 = 0$ \\
