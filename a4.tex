@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{forloop}
+\usepackage{graphicx}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{caption}
+\usepackage{enumerate}
+\graphicspath{ {.} }
+\title{STAT 2509B4 \\
+	\large{Assignment 4}}
+\author{Krystian Wojcicki, 101001444}
+\date{Winter 2020}
+
+\begin{document}
+\maketitle
+
+
+Christmas week is a critical period for most ski resorts. Because many students and
+adults are free, they are able to spend several days indulging in their favorite pastime,
+skiing. A ski resort in Vermont wanted to determine the effect that weather had on their
+sales of lift tickets. The manager of the resort collected the number of lift tickets sold
+during the Christmas week (y), the total snowfall (x1) and the average temperature (x2)
+for the past 20 years (x3). The TSS for the full model
+
+$y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3 x_3 + \epsilon$ is : TSS $= 56 601 012$
+
+We decided to screen the independent variables to determine the best set for predicting the lift
+tickets sales. The sums of squares for all possible regression models were found to be as
+follows: 
+
+\begin{enumerate}[(a)]
+\item \textbf{Determine the subset of variables that is selected as best by the Forward Selection Procedure using $F_0* = 4.2$ (to-add-variable). Show your steps. }
+
+\begin{enumerate}[(1)]
+\item Fit all one term models: $y = \beta_0 + \beta_1x_j + \epsilon$ for $j = 1,2,3$ \\
+SSR$(X_1) = 6 215 561$ \\
+SSR$(X_2) = 665 121$ \\
+SSR$(X_3) = 35 788 320 \Rightarrow $ max \\
+
+Therefore $F_3 = \frac{\text{MSR}(X_3)}{\text{MSE}(X_3)} = \frac{\text{SSR}(X_3)/1}{\text{SSE}(X_3)/18} = \frac{35 788 320/1}{20 812 692/18} = 30.952$
+
+Since $F_3 = 30.952 > F_0 = 4.2$ we keep $X_3$
+
+\item Fit all two term models $y = \beta_0 + \beta_1x_3 + \beta_2x_j + \epsilon$ for $j = 1,2$ \\
+
+Calculate SSR$(X_j | X_3)$ \\
+
+SSR$(X_1 | X_3) = \text{SSR}(X_1, X_3) - \text{SSR}(X_3) = 41 296 990 - 35 788 320 = 5 508 670 \Rightarrow$ max\\ 
+SSR$(X_2 | X_3) = \text{SSR}(X_2, X_3) - \text{SSR}(X_3) = 36 518 115 - 35 788 320 = 729 795$
+
+Therefore $F_1 = \frac{  \text{MSR}(X_1 | X_3) }{  \text{MSE}(X_1, X_3) } = 
+\frac{ [ \text{SSR}(X_1, X_3) - \text{SSR}(X_3) ] / [ df_{SSR(X_1, X_3)} - df_{SSR(X_3)} ]
+}{
+\text{SSE}(X_1, X_3) / df_{SSE(X_1, X_3)}
+}
+=  \frac{
+ 5 508 670 / (2- 1)
+}{
+15 304 022 / 17
+} = 6.1191358716$
+
+Since $F_1 = 6.1191358716 > 4.2$ we keep $X_1, X_3$
+
+\item Fit the full model $y = \beta_0 + \beta_1x_3 + \beta_2x_1 + \beta_3x_3 + \epsilon$
+
+Calculate SSR$(X_2 | X_1, X_3) = \text{SSR}(X_1, X_2, X_3) - \text{SSR}(X_1, X_3) = 41 940 217  - 41 296 990 = 643227$
+
+Therefore $F_2 = \frac{  \text{MSR}(X_2 | X_1, X_3) }{  \text{MSE}(X_1, X_2, X_3) } = 
+\frac{ [ \text{SSR}(X_1,X_2, X_3) - \text{SSR}(X_1, X_3) ] / [ df_{SSR(X_1,X_2, X_3)} - df_{SSR(X_1, X_3)} ]
+}{
+\text{SSE}(X_1,X_2, X_3) / df_{SSE(X_1, X_2, X_3)}
+}
+=  \frac{
+643 227 / (3 - 2)
+}{
+14 660 795 / 16
+} = 0.701983214416$
+
+Since $F_2 \leq F_0$ we keept $X_1, X_3$
+
+\end{enumerate}
+
+Therefore the best set is ${X_1, X_3}$
+
+\item \textbf{Determine the subset of variables that is selected as best by the Backward Elimination
+Procedure using $F_0** = 4.1$ (to-delete-variable). Show your steps.
+NOTE: $( t0^{**} )^2 = F_0^{**}$}
+
+
+\item \textbf{Determine the subset of variables that is selected as best by the Stepwise Regression
+Procedure using F0
+*
+ = 4.2 (to-add) and F0
+** = 4.1 (to-delete). Show your steps. }
+
+Fit the full model $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3 x_3 + \epsilon$ and check whether model is significant or not at $\alpha=5\%$.
+
+$F = \frac{\text{MSR}_f}{\text{MSE}_f} = \frac{\text{SSR}_f / 3}{\text{SSE}_f / 16} = \frac{ 41 940 217/3}{14 660 795/16} = 15.2570960397$
+
+Since $F = 15.2570960397 > F_{(3, 16); 0.05} = 3.24$, we can conclude that at 5\% level of sigificance the full model is significant and can be used
+
+\begin{enumerate}[(1)]
+
+\item Calculate $F_j = (t_j)^2 = \frac{ \text{MSR}(X_j | \text{all} X \text{'s except} X_j) }{\text{MSE}(X_1, X_2, X_3)} = \frac{ [SSR_f - SSR(\text{all} X\text{'s except} X_j)]/df}{MSE_f}$ for $j = 1,2,3$
+
+$F_1 = 
+
+\end{enumerate}
+
+\end{enumerate}
+
+A quality engineer in a company manufacturing electronic audio equipment was inspecting
+ a new type of battery that was being considered for use. A batch of 20 batteries was
+ randomly assigned to four groups (so that there were five batteries per group). Each group
+ of batteries was then subjected to a particular pressure level – low, normal, high, very
+ high. The batteries were simultaneously tested under these pressure levels and the times
+ to failure (in hours) were recorded and are given below: 
+
+Establish whether the average times to battery failure are the same for the four pressure levels;
+if not, do a follow-up analysis to determine which are the same and which differ. (Use $\alpha =0.10$).
+List all necessary assumptions and indicate which might be suspect. Also perform a nonparametric analysis. Verify your results using SAS. 
+
+C.R.D
+Assume 
+\begin{enumerate}[1]
+\item 3 independent random samples of patients (given)
+\item 3 normally distributed patient groups
+\item with equal variance, $\sigma^2$ (potentially)
+\end{enumerate}
+
+
+\end{document}
