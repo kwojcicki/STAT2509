@@ -34,7 +34,7 @@ tickets sales. The sums of squares for all possible regression models were found
 follows: 
 
 \begin{enumerate}[(a)]
-\item \textbf{Determine the subset of variables that is selected as best by the Forward Selection Procedure using $F_0* = 4.2$ (to-add-variable). Show your steps. }
+\item \textbf{Determine the subset of variables that is selected as best by the Forward Selection Procedure using $F_0^* = 4.2$ (to-add-variable). Show your steps. }
 
 \begin{enumerate}[(1)]
 \item Fit all one term models: $y = \beta_0 + \beta_1x_j + \epsilon$ for $j = 1,2,3$ \\
@@ -81,22 +81,15 @@ Therefore $F_2 = \frac{  \text{MSR}(X_2 | X_1, X_3) }{  \text{MSE}(X_1, X_2, X_3
 14 660 795 / 16
 } = 0.701983214416$
 
-Since $F_2 \leq F_0$ we keept $X_1, X_3$
+Since $F_2 \leq F_0^*$ we keept $X_1, X_3$
 
 \end{enumerate}
 
-Therefore the best set is ${X_1, X_3}$
+Therefore the best set is $\{X_1, X_3\}$
 
 \item \textbf{Determine the subset of variables that is selected as best by the Backward Elimination
-Procedure using $F_0** = 4.1$ (to-delete-variable). Show your steps.
-NOTE: $( t0^{**} )^2 = F_0^{**}$}
-
-
-\item \textbf{Determine the subset of variables that is selected as best by the Stepwise Regression
-Procedure using F0
-*
- = 4.2 (to-add) and F0
-** = 4.1 (to-delete). Show your steps. }
+Procedure using $F_0^{**} = 4.1$ (to-delete-variable). Show your steps.
+NOTE: $( t_0^{**} )^2 = F_0^{**}$}
 
 Fit the full model $y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3 x_3 + \epsilon$ and check whether model is significant or not at $\alpha=5\%$.
 
@@ -108,7 +101,134 @@ Since $F = 15.2570960397 > F_{(3, 16); 0.05} = 3.24$, we can conclude that at 5\
 
 \item Calculate $F_j = (t_j)^2 = \frac{ \text{MSR}(X_j | \text{all} X \text{'s except} X_j) }{\text{MSE}(X_1, X_2, X_3)} = \frac{ [SSR_f - SSR(\text{all} X\text{'s except} X_j)]/df}{MSE_f}$ for $j = 1,2,3$
 
-$F_1 = 
+$F_1 =
+\frac{ MSR(X_1 | X_2, X_3)
+}{
+MSE(X_1, X_2, X_3)
+}
+=
+\frac{
+[SSR(X_1, X_2, X_3) - SSR(X_2, X_3)]/[df_{SSR(X_1,X_2,X_3)} - df_{SSR(X_2,X_3)}]
+}{
+SSE(X_1, X_2, X_3)/df_{SSE(X_1, X_2, X_3)}
+}
+= 
+\frac{
+[41 940 217 - 36 518 115]/[3 - 2]
+}{
+14 660 795 / 16
+}
+= 5.91738933666
+$
+
+$F_2 =
+\frac{ MSR(X_2 | X_1, X_3)
+}{
+MSE(X_1, X_2, X_3)
+}
+=
+\frac{
+[SSR(X_1, X_2, X_3) - SSR(X_1, X_3)]/[df_{SSR(X_1,X_2,X_3)} - df_{SSR(X_1,X_3)}]
+}{
+SSE(X_1, X_2, X_3)/df_{SSE(X_1, X_2, X_3)}
+}
+= 
+\frac{
+[41 940 217 - 41 296 990]/[3 - 2]
+}{
+14 660 795 / 16
+}
+= 0.701983214416 \Leftarrow \text{min}
+$
+
+$F_3 =
+\frac{ MSR(X_3 | X_1, X_2)
+}{
+MSE(X_1, X_2, X_3)
+}
+=
+\frac{
+[SSR(X_1, X_2, X_3) - SSR(X_1, X_2)]/[df_{SSR(X_1,X_2,X_3)} - df_{SSR(X_1,X_2)}]
+}{
+SSE(X_1, X_2, X_3)/df_{SSE(X_1, X_2, X_3)}
+}
+= 
+\frac{
+[41 940 217 - 6 793 798]/[3 - 2]
+}{
+14 660 795 / 16
+}
+= 38.3569038378
+$
+
+Since $F_2 \ngtr 4.1$ we remove $x_2$ from the model.
+
+\item Fit model $y = \beta_0 + \beta_1x_1 + \beta_3x_3 + \epsilon$
+
+$F_1 =
+\frac{ MSR(X_1 | X_3)
+}{
+MSE(X_1, X_3)
+}
+=
+\frac{
+SSR(X_1, X_3) - SSR(X_3)
+}{
+SSE(X_1,X_3)/df_{SSE(X_1, X_3)}
+}
+= 
+\frac{
+(41 296 990 - 35 788 320)
+}{
+(15 304 022 / 17)
+}
+= 6.1191 \Leftarrow \text{min}
+$
+
+$F_3 =
+\frac{ MSR(X_3 | X_1)
+}{
+MSE(X_1, X_3)
+}
+=
+\frac{
+SSR(X_1, X_3) - SSR(X_1)
+}{
+SSE(X_1,  X_3)/df_{SSE(X_1, X_3)}
+}
+= 
+\frac{
+(41 296 990 - 6 215 561 )
+}{
+(15 304 022 / 17)
+}
+= 38.9691215159
+$
+
+Since $F_1 = 6.1191 > 4.1$ we remove nothing and keep the current model as the final model and terminate the procedure.
+
+Therefore the best set is $\{X_1, X_3\}$.
+
+\end{enumerate}
+
+\item \textbf{Determine the subset of variables that is selected as best by the Stepwise Regression
+Procedure using $F_0^* = 4.2$ (to-add) and $F_0^{**} = 4.1$ (to-delete). Show your steps. }
+
+\begin{enumerate}[(1)]
+\item Fit all one term models: $y= \beta_0 + \beta_1x_j + \epsilon$ for $j = 1,2,3$
+As we saw in forward selection in part (a) we know that we keep $X_3$
+
+\item Fit all two term models $y = \beta_0 + \beta_1x_3 + \beta_2x_j + \epsilon$ for $j = 1,2$
+As we saw in forward selection in part (a) we know that we keep $X_1$ \\
+
+Now check if after adding $X_1$, $X_3$ became insignificant. 
+
+$F_3 = \frac{ SSR(X_3 | X_1) }{ MSE(X_1, X_3)} = \frac{ SSR(X_1, X_3) - SSR(X_1)}{SSE(X_1, X_3)/df_{SSE(X_1, X_3)}} = \frac{41 296 990 - 6 215 561}{15 304 022/ 17} = 38.9691215159$
+
+Since $F_3 = 38.9691215159 > F_0^{**} = 4.1$ we keep  $X_3$ and keep $X_1$. 
+
+\item Fit the full model: $y = \beta_0 + \beta_1x_3 + \beta_2x_1 + \beta_3x_2 + \epsilon$
+As we saw in forward selection in part (a) we know that we dont not add $X_2$ and there is no need to check if adding $X_2$ makes any variable redundant. Therefore the best set is ${X_1, X_3}$.
 
 \end{enumerate}
 
@@ -127,11 +247,101 @@ List all necessary assumptions and indicate which might be suspect. Also perform
 
 C.R.D
 Assume 
-\begin{enumerate}[1]
-\item 3 independent random samples of patients (given)
+\begin{enumerate}[1)]
+\item 3 independent random samples of patients (given) TODO
 \item 3 normally distributed patient groups
 \item with equal variance, $\sigma^2$ (potentially)
 \end{enumerate}
 
+To check the assumption of equal variance using Hartleys test we need $s_i^2$'s for $j = 1,2,3$ where $n_1 = n_2 = n_3 = n_4 = 5, j = 4, \bar{n} = 5, [\bar{n}] = 5, n = 20$
+
+$s_1^2 = \frac{
+\sum_{j=1}^{n_1} {y_1^2} - \frac{ (\sum_{j=1}^{n_1}{y_{1j}})^2}{n_1}
+}{
+n_1 - 1
+}
+=
+\frac{
+439.5 - 46.4^2 / 5
+}{4}
+= 2.227
+$
+
+
+$s_2^2 = \frac{
+\sum_{j=1}^{n_2} {y_2^2} - \frac{ (\sum_{j=1}^{n_2}{y_{2j}})^2}{n_2}
+}{
+n_2 - 1
+}
+=
+\frac{
+491.14 - 48.8^2 / 5
+}{4}
+= 3.713 \Leftarrow \text{max}
+$
+
+$s_3^2 = \frac{
+\sum_{j=1}^{n_3} {y_3^2} - \frac{ (\sum_{j=1}^{n_3}{y_{3j}})^2}{n_3}
+}{
+n_3 - 1
+}
+=
+\frac{
+264.6 - 36^2 / 5
+}{4}
+= 1.35
+$
+
+
+$s_4^2 = \frac{
+\sum_{j=1}^{n_4} {y_4^2} - \frac{ (\sum_{j=1}^{n_4}{y_{4j}})^2}{n_4}
+}{
+n_4 - 1
+}
+=
+\frac{
+197.91 - 31.1^2 / 5
+}{4}
+= 1.117 \Leftarrow \text{min}
+$
+
+
+$H_0: \sigma_1^2 = \sigma_2^2 = \sigma_3^2 = \sigma_4^2$ \\
+$H_a:$ atleast one of the $\sigma^2$'s $\neq; \alpha = 0.10 TODO$
+
+Test statistic $F_{max} = \frac{s_{max}^2}{s_{min}^2} = 3.713 / 1.117 = 3.324$
+
+Rejection Region TODO
+
+Conclusion TODO
+
+
+
+
+
+
+An experiment was conducted by a private research corporation to investigate the toxic
+effects of three chemicals (I, II and III) used in the tire-manufacturing industry. In this
+experiment 1-inch squares of skin on rats were treated with the chemicals and then scored
+from 0 to 10, depending on the degree of irritation. Three adjacent 1-inch squares were
+marked on the back of each of eight rats, and each of the three chemicals was applied to
+each rat. The data are as shown in the table. 
+
+Is it possible to be $95\%$ certain that the toxic effects of three chemicals are not equal? Conduct
+the appropriate follow-up analysis (use $\alpha = 0.05$) to establish which means are significantly
+different. List all necessary assumptions and indicate which might be suspect. Also perform a
+non-parametric analysis. Verify your results using SAS. 
+
+
+R.B.D
+Assume 
+\begin{enumerate}[1)]
+\item random samples of 3 different chemicals randomly assigned to 8 different rats (given)
+\item populations corresponding to each chemical-rat combination are normally distributed
+\item with equal variance, $\sigma^2$ (?)
+\item no interactions between chemicals and rats
+\end{enumerate}
+
+To check the assumption of equal variance using Hartley's test we need $s_i^2$'s for $i = 1,2,3$
 
 \end{document}
