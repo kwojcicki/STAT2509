@@ -10,6 +10,7 @@
 \usepackage[margin=0.8in]{geometry}
 \usepackage{caption}
 \usepackage{enumerate}
+\usepackage{systeme}
 \graphicspath{ {.} }
 \title{STAT 2509B4 \\
 	\large{Assignment 4}}
@@ -253,10 +254,10 @@ Assume
 \item with equal variance, $\sigma^2$ (potentially)
 \end{enumerate}
 
-To check the assumption of equal variance using Hartleys test we need $s_i^2$'s for $j = 1,2,3$ where $n_1 = n_2 = n_3 = n_4 = 5, j = 4, \bar{n} = 5, [\bar{n}] = 5, n = 20$
+To check the assumption of equal variance using Hartleys test we need $s_i^2$'s for $j = 1,2,3, 4$ where $n_1 = n_2 = n_3 = n_4 = 5, k = 4, \bar{n} = 5, [\bar{n}] = 5, n = 20$
 
 $s_1^2 = \frac{
-\sum_{j=1}^{n_1} {y_1^2} - \frac{ (\sum_{j=1}^{n_1}{y_{1j}})^2}{n_1}
+\sum_{j=1}^{n_1} {y_{1j}^2} - \frac{ (\sum_{j=1}^{n_1}{y_{1j}})^2}{n_1}
 }{
 n_1 - 1
 }
@@ -269,7 +270,7 @@ $
 
 
 $s_2^2 = \frac{
-\sum_{j=1}^{n_2} {y_2^2} - \frac{ (\sum_{j=1}^{n_2}{y_{2j}})^2}{n_2}
+\sum_{j=1}^{n_2} {y_{2j}^2} - \frac{ (\sum_{j=1}^{n_2}{y_{2j}})^2}{n_2}
 }{
 n_2 - 1
 }
@@ -281,7 +282,7 @@ n_2 - 1
 $
 
 $s_3^2 = \frac{
-\sum_{j=1}^{n_3} {y_3^2} - \frac{ (\sum_{j=1}^{n_3}{y_{3j}})^2}{n_3}
+\sum_{j=1}^{n_3} {y_{3j}^2} - \frac{ (\sum_{j=1}^{n_3}{y_{3j}})^2}{n_3}
 }{
 n_3 - 1
 }
@@ -294,7 +295,7 @@ $
 
 
 $s_4^2 = \frac{
-\sum_{j=1}^{n_4} {y_4^2} - \frac{ (\sum_{j=1}^{n_4}{y_{4j}})^2}{n_4}
+\sum_{j=1}^{n_4} {y_{4j}^2} - \frac{ (\sum_{j=1}^{n_4}{y_{4j}})^2}{n_4}
 }{
 n_4 - 1
 }
@@ -303,22 +304,90 @@ n_4 - 1
 197.91 - 31.1^2 / 5
 }{4}
 = 1.117 \Leftarrow \text{min}
-$
+$ \\
 
 
 $H_0: \sigma_1^2 = \sigma_2^2 = \sigma_3^2 = \sigma_4^2$ \\
-$H_a:$ atleast one of the $\sigma^2$'s $\neq; \alpha = 0.10 TODO$
+$H_a:$ atleast one of the $\sigma^2$'s $\neq $\\
+$ \alpha = 0.01$ or 0.05
 
 Test statistic $F_{max} = \frac{s_{max}^2}{s_{min}^2} = 3.713 / 1.117 = 3.324$
 
-Rejection Region TODO
+Rejection Region we reject $H_0$ if $F_{max} > F_{max(k, [\bar{n}]-1); \alpha} =
+\syslineskipcoeff{1}
+\systeme*{F_{max(4, 4);0.01}=15.980,F_{max(4,4);0.05} = 6.390}
+$
 
-Conclusion TODO
+Since 3.324 is not greater than 6.390 (or 15.980) we can conclude that at a 1\% (or 5\%) level of significance there is no evidence to say that the variances are not equal (i.e we have equal variance). Therefore we may proceed with the main test
+
+$G.T. = \sum_{i=1}^{k}{ \sum_{j=1}^{n_i}{y_{ij}}} = \sum_{i=1}^{k}{T_i} = 162.3$ \\
+$TSS = \sum_{i=1}^{k}{ \sum_{j=1}^{n_i}{y_{ij}^2}} - \frac{(G.T)^2}{n} = 1393.15 - \frac{162.3^2}{20} = 76.0855$ \\
+$SST_r = \sum_{i=1}^{k}{ \frac{T_i^2}{n_i}} - \frac{(G.T)^2}{n}  = [(46.4)^2/5 + (48.8)^2/5 + (36^2)/5 + (31.1)^2/5] - \frac{162.3^2}{20} = 42.4575$ \\
+$SSE = TSS - SST_r = 76.0855 - 42.4575 = 33.628$\\
+$MST_r = \frac{SST_r}{k - 1} = 42.4575 / 3 = 14.1525$ \\
+$MSE = \frac{SSE}{n - k} = 33.628/16 = 2.10175$ \\
+$F_T = \frac{MST_r}{MSE} = 14.1525/2.10175 = 6.73367431902 = 6.733$ \\
 
 
+\begin{center}
+ \begin{tabular}{||c c c c c||} 
+ \hline
+Source & d.f & SS & MS & F \\ [0.5ex] 
+ \hline\hline
+Regression & 3 & 42.4575 & 14.1525 & 6.733 \\
+ \hline
+Error & 16 & 33.628 & 2.10175 &  \\
+ \hline
+Total & 19  &  76.0855 & & \\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
 
+$H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$ \\
+$H_a:$ at least one of the $\mu's \neq$ \\
+$\alpha = 0.10$
 
+Test statistic $F_T = \frac{MST_r}{MSE} = 6.733$
 
+Rejection Region: we reject $H_0$ if $F_T > F_{(k-1, n-k);\alpha} = F_{(3, 16);0.10} = 2.460$
+
+Sinece $F_T = 6.733 > 2.460$ we reject $H_0$ and conclude that at a 10\% level of significance there is evidence to say the time to battery failure is different among the four different pressure levels.
+
+Which are different: Use Tukey's h.s.d
+
+\begin{enumerate}[1)]
+
+\item $k \choose 2 $ = $4 \choose 2$ $= 6$ pairs of $|\bar{y_i} - \bar{y_j}|$ \\
+$H_0: \mu_i = \mu_j$ \\
+$H_a: \mu_i \neq \mu_j$ \\
+for i,j = 1,2,3 and i $\neq$ j
+
+\item h.s.d $ = q_{\alpha(k ,v)} \times \sqrt{ \frac{MSE}{2}( \frac{1}{n_i} + \frac{1}{n_j}) } = q_{0.10(4, 16)} \times \sqrt{ \frac{2.10175}{2}\frac{2}{5}} = (3.52003)(0.64834404447) = 2.28219048686 = 2.282 $
+
+$\bar{y_1} = \frac{T_1}{n_1} = 46.4/5 = 9.28$\\
+$\bar{y_2} = \frac{T_2}{n_2} = 48.8/5 = 9.76$\\
+$\bar{y_3} = \frac{T_3}{n_3} = 36/5 = 7.2$\\
+$\bar{y_4} = \frac{T_4}{n_4} = 31.1/5 = 6.22$\\
+
+\item $| \bar{y_1} - \bar{y_2} | = 0.48 < 2.282 \Rightarrow \mu_1 = \mu_2$ \\
+$| \bar{y_1} - \bar{y_3} | = 2.08 < 2.282 \Rightarrow \mu_1 = \mu_3$ \\
+$| \bar{y_1} - \bar{y_4} | = 3.06 > 2.282 \Rightarrow \mu_1 \neq \mu_4$ \\
+$| \bar{y_2} - \bar{y_3} | = 2.56 > 2.282 \Rightarrow \mu_2 \neq \mu_3$ \\
+$| \bar{y_2} - \bar{y_4} | = 3.54 > 2.282 \Rightarrow \mu_2 \neq \mu_4$ \\
+$| \bar{y_3} - \bar{y_4} | = 0.98 < 2.282 \Rightarrow \mu_3 = \mu_4$ \\
+
+Therefore there are differences in average time for battery failure for (low and very high), (normal and high), (normal and very high) groups.
+
+\end{enumerate}
+
+None-parametric Analysis (Kruskal-Wallis test)
+Assume:
+\begin{enumerate}[1)]
+\item C.R.D (4 independent random samples from 4 treatment populations) with
+\item approximately the same shape and spread
+\end{enumerate}
+
+First we need to rank the observations from smallest to the largest
 
 An experiment was conducted by a private research corporation to investigate the toxic
 effects of three chemicals (I, II and III) used in the tire-manufacturing industry. In this
