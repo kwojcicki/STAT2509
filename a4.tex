@@ -84,11 +84,11 @@ Therefore $F_2 = \frac{  \text{MSR}(X_2 | X_1, X_3) }{  \text{MSE}(X_1, X_2, X_3
 14 660 795 / 16
 } = 0.701983214416$
 
-Since $F_2 \leq F_0^*$ we keept $X_1, X_3$
+Since $F_2 \leq F_0^*$ we do not add $X_2$ and only keep $\{X_1, X_3\}$ and terminate the process.
 
 \end{enumerate}
 
-Therefore the best set is $\{X_1, X_3\}$
+Therefore the best set is $\{X_1, X_3\}$ and the model is $y = \beta_0 + \beta_1x_3 + \beta_2x_1 + \epsilon$.
 
 \item \textbf{Determine the subset of variables that is selected as best by the Backward Elimination
 Procedure using $F_0^{**} = 4.1$ (to-delete-variable). Show your steps.
@@ -210,7 +210,7 @@ $
 
 Since $F_1 = 6.1191 > 4.1$ we remove nothing and keep the current model as the final model and terminate the procedure.
 
-Therefore the best set is $\{X_1, X_3\}$.
+Therefore the best set is $\{X_1, X_3\}$ and the model is $y = \beta_0 + \beta_1 x_1+ \beta_3x_3 + \epsilon$.
 
 \end{enumerate}
 
@@ -230,8 +230,8 @@ $F_3 = \frac{ SSR(X_3 | X_1) }{ MSE(X_1, X_3)} = \frac{ SSR(X_1, X_3) - SSR(X_1)
 
 Since $F_3 = 38.9691215159 > F_0^{**} = 4.1$ we keep  $X_3$ and keep $X_1$. 
 
-\item Fit the full model: $y = \beta_0 + \beta_1x_3 + \beta_2x_1 + \beta_3x_2 + \epsilon$
-As we saw in forward selection in part (a) we know that we dont not add $X_2$ and there is no need to check if adding $X_2$ makes any variable redundant. Therefore the best set is ${X_1, X_3}$.
+\item Fit the full model: $y = \beta_0 + \beta_1x_3 + \beta_2x_1 + \beta_3x_2 + \epsilon$.
+As we saw in forward selection in part (a) we know that we don't add $X_2$ and there is no need to check if adding $X_2$ makes any variable redundant. Therefore the best set is $\{X_1, X_3\}$.
 
 \end{enumerate}
 
@@ -253,9 +253,9 @@ List all necessary assumptions and indicate which might be suspect. Also perform
 C.R.D
 Assume 
 \begin{enumerate}[1)]
-\item 3 independent random samples of patients (given) TODO
-\item 3 normally distributed patient groups
-\item with equal variance, $\sigma^2$ (potentially)
+\item 4 independent random samples of batteries (given)
+\item 4 normally distributed battery groups
+\item with equal variance, $\sigma^2$ (?, potentially need to check)
 \end{enumerate}
 
 To check the assumption of equal variance using Hartleys test we need $s_i^2$'s for $j = 1,2,3, 4$ where $n_1 = n_2 = n_3 = n_4 = 5, k = 4, \bar{n} = 5, [\bar{n}] = 5, n = 20$
@@ -355,9 +355,9 @@ Test statistic $F_T = \frac{MST_r}{MSE} = 6.733$
 
 Rejection Region: we reject $H_0$ if $F_T > F_{(k-1, n-k);\alpha} = F_{(3, 16);0.10} = 2.460$
 
-Since $F_T = 6.733 > 2.460$ we reject $H_0$ and conclude that at a 10\% level of significance there is evidence to say the time to battery failure is different among the four different pressure levels.
+Since $F_T = 6.733 > 2.460$ we reject $H_0$ and conclude that at a 10\% level of significance there is evidence to say the mean time to battery failure is different among the four different pressure levels.
 
-Which are different: Use Tukey's h.s.d
+\textbf{Which are different? Use Tukey's h.s.d}
 
 \begin{enumerate}[1)]
 
@@ -380,15 +380,15 @@ $| \bar{y_2} - \bar{y_3} | = 2.56 > 2.282 \Rightarrow \mu_2 \neq \mu_3$ \\
 $| \bar{y_2} - \bar{y_4} | = 3.54 > 2.282 \Rightarrow \mu_2 \neq \mu_4$ \\
 $| \bar{y_3} - \bar{y_4} | = 0.98 < 2.282 \Rightarrow \mu_3 = \mu_4$ \\
 
-Therefore there are differences in average time for battery failure for (low and very high), (normal and high), (normal and very high) groups.
+Therefore there are differences in average time for battery failure for (low and very high), (normal and high), (normal and very high) groups. At the 10\% level of significance. 
 
 \end{enumerate}
 
-None-parametric Analysis (Kruskal-Wallis test)
+\textbf{None-parametric Analysis (Kruskal-Wallis test)}
 Assume:
 \begin{enumerate}[1)]
-\item C.R.D (4 independent random samples from 4 treatment populations) with
-\item approximately the same shape and spread
+\item C.R.D (4 independent random samples from 4 treatment populations) with (given this)
+\item approximately the same shape and spread (assume this)
 \end{enumerate}
 
 First we need to rank the observations from smallest to the largest
@@ -414,10 +414,10 @@ Low & Normal & High & Very High \\ [0.5ex]
 
 $T_{R_1} = 73, T_{R_2} = 76, T_{R_3} = 39, T_{R_4} = 22$
 
-Check $\frac{n(n+1)}{2} = \frac{20\times21}{2} = 210$
-$73 + 76 + 39 + 22 = 210$
+Check $\frac{n(n+1)}{2} = \frac{20\times21}{2} = 210$ \\
+$\sum_{i}{T_{R_i}} = 73 + 76 + 39 + 22 = 210$ \\
 
-$H_0: Md_1 = Md_2 = Md_3$ \\
+$H_0: Md_1 = Md_2 = Md_3 = Md_4$ \\
 $H_a$: at least one of the $Md$'s $\neq$. \\
 $\alpha = 0.10$
 
@@ -427,7 +427,7 @@ Rejection region, we reject $H_0$ if $H > \chi_{(k-1);\alpha}^2 = \chi_{3; 0.10}
 
 Since $H = 11.91 > 6.251$ we reject $H_0$. and conclude that at a 10\% level of significance there is evidence to say that the medians vary among the 4 pressures.
 
-Which pressures differ? Dunes procedure:
+\textbf{Which pressures differ? Dunes procedure:}
 
 \begin{enumerate}[1)]
 \item
@@ -443,19 +443,27 @@ $\bar{R_3} = \frac{T_{R_3}}{n_3} = 39/5 = 7.8$ \\
 $\bar{R_4} = \frac{T_{R_4}}{n_4} = 22/5 = 4.4$\\ 
 
 \item
-$|\bar{R_1} - \bar{R_2}| = 0.6 < 8.96 \Rightarrow Md_1 = MD_2$ \\
-$|\bar{R_1} - \bar{R_3}| = 6.8 < 8.96 \Rightarrow Md_1 = MD_3$ \\
-$|\bar{R_1} - \bar{R_4}| = 10.2 > 8.96 \Rightarrow Md_1 \neq MD_4$ \\
+$|\bar{R_1} - \bar{R_2}| = 0.6 < 8.96 \Rightarrow Md_1 = Md_2$ \\
+$|\bar{R_1} - \bar{R_3}| = 6.8 < 8.96 \Rightarrow Md_1 = Md_3$ \\
+$|\bar{R_1} - \bar{R_4}| = 10.2 > 8.96 \Rightarrow Md_1 \neq Md_4$ \\
 
-$|\bar{R_2} - \bar{R_3}| = 7.8 < 8.96 \Rightarrow Md_2 = MD_3$ \\
-$|\bar{R_2} - \bar{R_4}| = 10.8 > 8.96 \Rightarrow Md_2 \neq MD_4$ \\
+$|\bar{R_2} - \bar{R_3}| = 7.8 < 8.96 \Rightarrow Md_2 = Md_3$ \\
+$|\bar{R_2} - \bar{R_4}| = 10.8 > 8.96 \Rightarrow Md_2 \neq Md_4$ \\
 
-$|\bar{R_3} - \bar{R_4}| = 3.4 < 8.96 \Rightarrow Md_3 = MD_4$ \\
+$|\bar{R_3} - \bar{R_4}| = 3.4 < 8.96 \Rightarrow Md_3 = Md_4$ \\
 
 \end{enumerate}
 
-Therefore there are differences in medians of battery failure for (low and very high), (normal and very high) groups.
+Therefore there are differences in medians of battery failure for (low and very high), (normal and very high) groups. At the 10\% level of significance. 
 
+
+\begin{center}
+\includegraphics[scale=1]{a4_sas1}
+\includegraphics[scale=1]{a4_sas2} \\
+Values match values obtained in ANOVA table done by hand.
+\includegraphics[scale=1]{a4_sas3}
+\includegraphics[scale=1]{a4_sas4}
+\end{center}
 
 \item \textbf{An experiment was conducted by a private research corporation to investigate the toxic
 effects of three chemicals (I, II and III) used in the tire-manufacturing industry. In this
@@ -477,7 +485,7 @@ Assume
 \begin{enumerate}[1)]
 \item random samples of 3 different chemicals randomly assigned to 8 different rats (given)
 \item populations corresponding to each chemical-rat combination are normally distributed
-\item with equal variance, $\sigma^2$ (?)
+\item with equal variance, $\sigma^2$ (?, potentially need to check)
 \item no interactions between chemicals and rats
 \end{enumerate}
 
@@ -521,19 +529,13 @@ $
 
 $H_0: \sigma_1^2 = \sigma_2^2 = \sigma_3^2$ \\
 $H_a:$ atleast one of the $\sigma^2$'s $\neq $\\
-$ \alpha = 0.01$ or 0.05
+$ \alpha = 0.05$
 
 Test statistic $F_{max} = \frac{s_{max}^2}{s_{min}^2} = 2.85714285714 / 1.6428 = 1.73919092838$
 
-~~~~~~~~~~~~~
-Rejection Region we reject $H_0$ if $F_{max} > F_{max(k, [\bar{n}]-1); \alpha} =
-\syslineskipcoeff{1}
-\systeme*{F_{max(4, 4);0.01}=15.980,F_{max(4,4);0.05} = 6.390}
-$
+Rejection Region we reject $H_0$ if $F_{max} > F_{max(k, [\bar{n}]-1); \alpha} = F_{max(3, 7); 0.05} = 6.94$
 
-Since 3.324 is not greater than 6.390 (or 15.980) we can conclude that at a 1\% (or 5\%) level of significance there is no evidence to say that the variances are not equal (i.e we have equal variance). Therefore we may proceed with the main test
-~~~~~~~~~~
- TODO
+Since 1.739 is not greater than 6.94 we can conclude that at a 5\% level of significance there is no evidence to say that the variances are not equal (i.e we have equal variance). Therefore we may proceed with the main test
 
 $G.T. = \sum_{i=1}^{k}{ \sum_{j=1}^{b}{y_{ij}}} = \sum_{i=1}^{k}{T_i} = 150$ \\
 $TSS = \sum_{i=1}^{k}{ \sum_{j=1}^{b}{y_{ij}^2}} - \frac{(G.T)^2}{bk} = 1006 - \frac{150^2}{24} = 68.5$ \\
@@ -564,6 +566,20 @@ Total & 23  &  68.5 & & \\ [1ex]
 \end{tabular}
 \end{center}
 
+\textbf{Test for difference in block means}
+
+$H_0: \beta_1 = ... = \beta_8$ \\
+$H_a:$ Not all $\beta$'s are equal \\
+$\alpha = 0.05$
+
+Test statistic $F_B = \frac{MSB}{MSE} = 1.48$ 
+
+Rejection Region: we reject $H_0$ if $F_B > F_{(b-1)(bk - k - b + 1);\alpha} = F_{(7)(14);0.05} = 2.76$
+
+Since $F_B = 1.48 < 2.76$ we do not have enough evidence to reject $H_0$ at a 5\% level of signifiance and conclude that there is no difference in mean between rats. This suggests that RBD is not more effective than CRD in this case. 
+
+\textbf{Test for treatment means}
+
 $H_0: \mu_1 = \mu_2 = \mu_3$ \\
 $H_a:$ at least one of the $\mu's \neq$ \\
 $\alpha = 0.05$
@@ -572,9 +588,9 @@ Test statistic $F_T = \frac{MST_r}{MSE} = 7$
 
 Rejection Region: we reject $H_0$ if $F_T > F_{(k-1, (b-1)(k-1));\alpha} = F_{(2, 14);0.05} = 3.740$
 
-Since $F_T =7 > 3.740$ we reject $H_0$ and conclude that at a 5\% level of significance there is evidence to say that there are differences between the three chemicals.
+Since $F_T =7 > 3.740$ we reject $H_0$ and conclude that at a 5\% level of significance there is evidence to say that there are differences between the three chemicals means.
 
-Which are different: Use Tukey's h.s.d
+\textbf{Which are different? Use Tukey's h.s.d}
 
 \begin{enumerate}[1)]
 
@@ -593,11 +609,11 @@ $\bar{y_3} = \frac{T_3}{b} = 40/8 = 5$
 $| \bar{y_1} - \bar{y_3} | = 1.25 < 1.7487 \Rightarrow \mu_1 = \mu_3$ \\
 $| \bar{y_2} - \bar{y_3} | = 2.5 > 1.7487 \Rightarrow \mu_2 \neq \mu_3$ \\
 
-Therefore there are differences in irritation for chemical groups (2 \& 3).
+Therefore there are differences in mean irritation for chemical groups (2 \& 3). At a 5\% level of significance. 
 
 \end{enumerate}
 
-Non-parametric Analysis Friedman-Rank test
+\textbf{Non-parametric Analysis Friedman-Rank Test} \\
 Assume 
 \begin{enumerate}[1)]
 \item R.B.D (given)
@@ -608,6 +624,64 @@ Assume
 First we need to rank the observations from smallest to the largest within each block
 
 
+\begin{center}
+ \begin{tabular}{||c c c c c c c c c||} 
+ \hline
+Chemical & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ [0.5ex] 
+ \hline\hline
+I & 6  (3) & 9 (2.5) & 6 (2) & 5 (1) & 7 (1) & 5 (1.5) & 6 (2) & 6 (1.5) $T_{R_1} = 14.5$ \\
+\hline
+II & 5 (2) & 9 (2.5) & 9 (3) & 8 (3) & 8 (2.5) & 7 (3) & 7 (3) & 7 (3) $T_{R_2} = 22$\\
+\hline
+III & 3 (1) & 4 (1) & 3 (1) & 6 (2) & 8  (2.5)& 5 (1.5) & 5 (1) & 6 (1.5) $T_{R_3} = 11.5$\\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
+
+Check $\frac{bk(k+1)}{2} = \frac{24(4)}{2} = 48$ \\
+$\sum_{i=1}^{3}{T_{R_i}} = 14.5 + 22 + 11.5 = 48$ \\
+
+$H_0: Md_1 = Md_2 = Md_3$ \\
+$H_a:$ at least one of the $Md$'s $\neq$ \\
+$\alpha = 0.05$ \\
+
+Test statistic $F_R = \frac{12}{bk(k+1)}[\sum_{i=1}^{3}{T_{R_i}^2}] - 3b(k+1) = \frac{12}{96}[14.5^2 + 22^2 + 11.5^2] - 3(8)(4) = 7.3125$
+
+Rejection region, we reject $H_0$ if $F_R > \chi_{(k-1); \alpha}^2 = \chi_{(2; 0.05)}^2 = 5.991$
+
+Since $F_R = 7.3125 > 5.991$ we reject $H_0$ and conclude that at a 5\% level of significance that there is enough evidence to indicate that median of the 3 chemicals differ.
+
+\textbf{Which differ? Nemenyi's procedure.}
+
+\begin{enumerate}[1)]
+\item Calculate $k \choose 2$ = $3 \choose 2 $ = 3 pairs of $|\bar{R_i} - \bar{R_j}|$ for $H_0: Md_i = Md_j$ vs $H_a: Md_i \neq Md_j$ for all $i,j = 1,2,3$ and $i \neq j$. 
+
+\item Critical value $N_e = q_{\alpha(k, \infty)}\times\sqrt{\frac{k(k+1)}{12b}} = q_{0.05(3, \infty)}\times\sqrt{\frac{3(4)}{12\times8}} = 3.314(0.3536) = 1.1717$
+
+$\bar{R_1} = \frac{T_{R_1}}{b} = 14.5/8 = 1.8125$ \\
+$\bar{R_2} = \frac{T_{R_2}}{b} = 22/8 = 2.75$ \\
+$\bar{R_3} = \frac{T_{R_3}}{b} = 11.5/8 = 1.4375$ \\
+
+\item
+$|\bar{R_1} - \bar{R_2}| = 0.9375 < 1.1717 \Rightarrow Md_1 = Md_2$ \\
+$|\bar{R_1} - \bar{R_3}| = 0.375 < 1.1717 \Rightarrow Md_1 = Md_3$ \\
+$|\bar{R_2} - \bar{R_3}| = 1.3125 > 1.1717 \Rightarrow Md_2 \neq Md_3$ \\
 \end{enumerate}
+
+Therefore there are differences in the median of the irritation for (chemical 2 and chemical 3). At the 5\% level of significance.
+
+\end{enumerate}
+
+\begin{center}
+\includegraphics[scale=1]{a4_sas5}
+\includegraphics[scale=1]{a4_sas6}\\
+Values match values obtained in ANOVA table done by hand.
+\includegraphics[scale=1]{a4_sas7}
+\includegraphics[scale=1]{a4_sas8}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=.9]{a4_sascode}
+\end{center}
 
 \end{document}
